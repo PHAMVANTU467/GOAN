@@ -26,6 +26,8 @@ export interface AuthResponse {
   message: string;
 }
 
+export type AccountProfile = Pick<AuthResponse, "userId" | "fullName">;
+
 export type LoginErrors = Partial<Record<keyof LoginCredentials, string>>;
 export type RegistrationField = keyof RegistrationFormValues;
 export type RegistrationErrors = Partial<Record<RegistrationField, string>>;

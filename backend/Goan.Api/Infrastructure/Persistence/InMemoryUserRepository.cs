@@ -17,8 +17,9 @@ public sealed class InMemoryUserRepository : IUserRepository
         lock (_syncRoot)
         {
             var account = _accounts.FirstOrDefault(candidate =>
+                candidate.Username.Equals(identifier, StringComparison.OrdinalIgnoreCase) ||
                 candidate.Email.Equals(identifier, StringComparison.OrdinalIgnoreCase) ||
-                candidate.Phone.Equals(identifier, StringComparison.Ordinal));
+                candidate.Phone.Equals(identifier.Replace(" ", string.Empty).Replace(".", string.Empty).Replace("-", string.Empty), StringComparison.Ordinal));
             return Task.FromResult(account);
         }
     }

@@ -13,7 +13,7 @@ import {
 } from "../../../../shared/presentation/components/InfoDialog";
 import type { AuthService } from "../../application/AuthService";
 import { LoginValidator } from "../../application/LoginValidator";
-import type { LoginErrors } from "../../domain/AuthModels";
+import type { AuthResponse, LoginErrors } from "../../domain/AuthModels";
 import { AuthInput } from "../components/AuthInput";
 import { AuthPageLayout } from "../components/AuthPageLayout";
 
@@ -26,9 +26,10 @@ const forgotPasswordInformation: DialogContent = {
 interface LoginPageProps {
   authService: AuthService;
   onRegister: () => void;
+  onSignedIn: (account: AuthResponse, remember: boolean) => void;
 }
 
-export function LoginPage({ authService, onRegister }: LoginPageProps) {
+export function LoginPage({ authService, onRegister, onSignedIn }: LoginPageProps) {
   const [visible, setVisible] = useState(false);
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
@@ -69,6 +70,7 @@ export function LoginPage({ authService, onRegister }: LoginPageProps) {
     try {
       const response = await authService.signIn(credentials);
       setMessage(response.message);
+      onSignedIn(response, remember);
     } catch (error) {
       setMessage(
         error instanceof Error
@@ -91,9 +93,9 @@ export function LoginPage({ authService, onRegister }: LoginPageProps) {
         >
           <AuthInput
             id="identifier"
-            label="Email hoặc số điện thoại"
+            label="Tên đăng nhập, email hoặc số điện thoại"
             value={identifier}
-            placeholder="Nhập email hoặc số điện thoại"
+            placeholder="Nhập tên đăng nhập, email hoặc số điện thoại"
             error={errors.identifier}
             icon={<Mail size={19} />}
             inputRef={identifierRef}
@@ -139,6 +141,21 @@ export function LoginPage({ authService, onRegister }: LoginPageProps) {
             }}
             onBlur={() => validateField("password")}
           />
+
+          <button
+            type="button"
+            className="quick-fill-button"
+            disabled={pending}
+            onClick={() => {
+              setIdentifier("admin");
+              setPassword("123456");
+              setErrors({});
+              setMessage("");
+              passwordRef.current?.focus();
+            }}
+          >
+            <LockKeyhole size={16} /> Điền nhanh tài khoản mặc định
+          </button>
 
           <div className="form-options">
             <label className="remember-option">

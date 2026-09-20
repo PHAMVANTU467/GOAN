@@ -2,10 +2,18 @@ import { useEffect, useState } from "react";
 import type { AuthService } from "../features/auth/application/AuthService";
 import { LoginPage } from "../features/auth/presentation/pages/LoginPage";
 import { RegisterPage } from "../features/auth/presentation/pages/RegisterPage";
+import { Workspace, workspaceNavigation } from "./Workspace";
+import { MockCatalogService } from "../features/sales/infrastructure/MockCatalogService";
+import { AccountProfileStore } from "../features/auth/infrastructure/AccountProfileStore";
 
-type AuthRoute = "login" | "register";
+const catalogService = new MockCatalogService();
+
+type AuthRoute = string;
 
 function routeFromPath(pathname: string): AuthRoute {
+  if (workspaceNavigation.some((item) => item.path === pathname))
+    return pathname;
+  if (pathname === "/overview") return "/sales";
   return pathname === "/register" ? "register" : "login";
 }
 
@@ -14,6 +22,7 @@ interface AppProps {
 }
 
 export function App({ authService }: AppProps) {
+  const [account, setAccount] = useState(() => AccountProfileStore.read());
   const [route, setRoute] = useState<AuthRoute>(() =>
     routeFromPath(window.location.pathname),
   );
@@ -27,14 +36,39 @@ export function App({ authService }: AppProps) {
 
   useEffect(() => {
     document.title =
-      route === "register" ? "Đăng ký tài khoản | GOAN" : "Đăng nhập | GOAN";
+      route === "register"
+        ? "Đăng ký tài khoản | GOAN"
+        : workspaceNavigation.some((item) => item.path === route)
+          ? `${workspaceNavigation.find((item) => item.path === route)?.label} | GOAN`
+          : "Đăng nhập | GOAN";
   }, [route]);
 
   function navigate(nextRoute: AuthRoute) {
-    const path = nextRoute === "register" ? "/register" : "/";
+    const path =
+      nextRoute === "register"
+        ? "/register"
+        : nextRoute === "login"
+          ? "/"
+          : nextRoute;
     window.history.pushState({}, "", path);
-    setRoute(nextRoute);
+    setRoute(routeFromPath(path));
     window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  if (workspaceNavigation.some((item) => item.path === route)) {
+    return (
+      <Workspace
+        path={route}
+        navigate={navigate}
+        catalogService={catalogService}
+        account={account}
+        onSignOut={() => {
+          AccountProfileStore.clear();
+          setAccount(null);
+          navigate("login");
+        }}
+      />
+    );
   }
 
   if (route === "register") {
@@ -50,6 +84,12 @@ export function App({ authService }: AppProps) {
     <LoginPage
       authService={authService}
       onRegister={() => navigate("register")}
+      onSignedIn={(response, remember) => {
+        const profile = { userId: response.userId, fullName: response.fullName };
+        AccountProfileStore.save(profile, remember);
+        setAccount(profile);
+        navigate("/sales");
+      }}
     />
   );
 }

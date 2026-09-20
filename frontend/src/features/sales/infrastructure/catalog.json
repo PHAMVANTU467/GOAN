@@ -1,0 +1,367 @@
+{
+  "CuaHang": {
+    "MaCuaHang": "CH001",
+    "TenCuaHang": "Coffee & Tea",
+    "SDT": "0901234567",
+    "diaChi": {
+      "MaDiaChi": "DC001",
+      "DiaChiChiTiet": "123 Lê Lợi, Phường Bến Nghé, Quận 1",
+      "PhuongXa": "Bến Nghé",
+      "TinhThanhPho": "TP. Hồ Chí Minh",
+      "QuocGia": "Việt Nam"
+    },
+    "linhVuc": {
+      "MaLinhVuc": "LV001",
+      "TenLinhVuc": "F&B",
+      "MoTa": "Đồ uống & Cà phê",
+      "TrangThai": "Hoạt động"
+    }
+  },
+  "DanhMucSP": [
+    {
+      "MaLoai": "coffee",
+      "TenLoai": "Cà phê"
+    },
+    {
+      "MaLoai": "tea",
+      "TenLoai": "Trà & matcha"
+    },
+    {
+      "MaLoai": "juice",
+      "TenLoai": "Nước ép"
+    },
+    {
+      "MaLoai": "food",
+      "TenLoai": "Đồ ăn"
+    },
+    {
+      "MaLoai": "bottled",
+      "TenLoai": "Đóng chai"
+    },
+    {
+      "MaLoai": "snack",
+      "TenLoai": "Ăn vặt"
+    }
+  ],
+  "DonViTinh": [
+    {
+      "MaDonVi": "DVT01",
+      "TenDonVi": "Ly"
+    },
+    {
+      "MaDonVi": "DVT02",
+      "TenDonVi": "Chai"
+    },
+    {
+      "MaDonVi": "DVT03",
+      "TenDonVi": "Gói"
+    },
+    {
+      "MaDonVi": "DVT04",
+      "TenDonVi": "Phần"
+    }
+  ],
+  "NhaCC": [
+    {
+      "MaNCC": "NCC001",
+      "TenNCC": "Nông Sản & Nguyên Liệu Pha Chế Sài Gòn",
+      "SDT": "02838123456",
+      "Email": "sales@nguyenlieupha.vn",
+      "DiaChi": "TP. Hồ Chí Minh"
+    }
+  ],
+  "Sanpham": [
+    {
+      "MaSP": "SP0001",
+      "TenSP": "Cà phê kem muối",
+      "GiaVon": 15000,
+      "GiaBan": 35000,
+      "dm": "coffee",
+      "ncc": "NCC001",
+      "dv": "DVT01",
+      "HinhAnh": "/images/products/product-01.jpg"
+    },
+    {
+      "MaSP": "SP0002",
+      "TenSP": "Cà phê sữa đá",
+      "GiaVon": 12000,
+      "GiaBan": 29000,
+      "dm": "coffee",
+      "ncc": "NCC001",
+      "dv": "DVT01",
+      "HinhAnh": "/images/products/product-02.jpg"
+    },
+    {
+      "MaSP": "SP0003",
+      "TenSP": "Cà phê đen đá",
+      "GiaVon": 10000,
+      "GiaBan": 25000,
+      "dm": "coffee",
+      "ncc": "NCC001",
+      "dv": "DVT01",
+      "HinhAnh": "/images/products/product-03.jpg"
+    },
+    {
+      "MaSP": "SP0004",
+      "TenSP": "Matcha latte",
+      "GiaVon": 20000,
+      "GiaBan": 45000,
+      "dm": "tea",
+      "ncc": "NCC001",
+      "dv": "DVT01",
+      "HinhAnh": "/images/products/product-04.jpg"
+    },
+    {
+      "MaSP": "SP0005",
+      "TenSP": "Trà đào hạt chia",
+      "GiaVon": 16000,
+      "GiaBan": 39000,
+      "dm": "tea",
+      "ncc": "NCC001",
+      "dv": "DVT01",
+      "HinhAnh": "/images/products/product-05.jpg"
+    },
+    {
+      "MaSP": "SP0006",
+      "TenSP": "Trà vải hoa hồng",
+      "GiaVon": 18000,
+      "GiaBan": 45000,
+      "dm": "tea",
+      "ncc": "NCC001",
+      "dv": "DVT01",
+      "HinhAnh": "/images/products/product-06.jpg"
+    },
+    {
+      "MaSP": "SP0007",
+      "TenSP": "Nước ép cam",
+      "GiaVon": 17000,
+      "GiaBan": 39000,
+      "dm": "juice",
+      "ncc": "NCC001",
+      "dv": "DVT01",
+      "HinhAnh": "/images/products/product-07.jpg"
+    },
+    {
+      "MaSP": "SP0008",
+      "TenSP": "Chanh dây",
+      "GiaVon": 14000,
+      "GiaBan": 35000,
+      "dm": "juice",
+      "ncc": "NCC001",
+      "dv": "DVT01",
+      "HinhAnh": "/images/products/product-08.jpg"
+    },
+    {
+      "MaSP": "SP0009",
+      "TenSP": "Nước ép dưa hấu",
+      "GiaVon": 14000,
+      "GiaBan": 35000,
+      "dm": "juice",
+      "ncc": "NCC001",
+      "dv": "DVT01",
+      "HinhAnh": "/images/products/product-09.jpg"
+    },
+    {
+      "MaSP": "SP0010",
+      "TenSP": "Nước ép thơm",
+      "GiaVon": 14000,
+      "GiaBan": 35000,
+      "dm": "juice",
+      "ncc": "NCC001",
+      "dv": "DVT01",
+      "HinhAnh": "/images/products/product-10.jpg"
+    },
+    {
+      "MaSP": "SP0011",
+      "TenSP": "Bánh mì ốp la",
+      "GiaVon": 12000,
+      "GiaBan": 25000,
+      "dm": "food",
+      "ncc": "NCC001",
+      "dv": "DVT04",
+      "HinhAnh": "/images/products/product-11.jpg"
+    },
+    {
+      "MaSP": "SP0012",
+      "TenSP": "Croissant bơ tỏi",
+      "GiaVon": 16000,
+      "GiaBan": 32000,
+      "dm": "food",
+      "ncc": "NCC001",
+      "dv": "DVT04",
+      "HinhAnh": "/images/products/product-12.jpg"
+    },
+    {
+      "MaSP": "SP0013",
+      "TenSP": "Sandwich gà nướng",
+      "GiaVon": 20000,
+      "GiaBan": 39000,
+      "dm": "food",
+      "ncc": "NCC001",
+      "dv": "DVT04",
+      "HinhAnh": "/images/products/product-13.jpg"
+    },
+    {
+      "MaSP": "SP0014",
+      "TenSP": "Bánh mousse chanh dây",
+      "GiaVon": 18000,
+      "GiaBan": 35000,
+      "dm": "food",
+      "ncc": "NCC001",
+      "dv": "DVT04",
+      "HinhAnh": "/images/products/product-14.jpg"
+    },
+    {
+      "MaSP": "SP0015",
+      "TenSP": "Trà đào đóng chai",
+      "GiaVon": 18000,
+      "GiaBan": 35000,
+      "dm": "bottled",
+      "ncc": "NCC001",
+      "dv": "DVT02",
+      "HinhAnh": "/images/products/product-15.jpg"
+    },
+    {
+      "MaSP": "SP0016",
+      "TenSP": "Cold brew cam vàng",
+      "GiaVon": 25000,
+      "GiaBan": 49000,
+      "dm": "bottled",
+      "ncc": "NCC001",
+      "dv": "DVT02",
+      "HinhAnh": "/images/products/product-16.jpg"
+    },
+    {
+      "MaSP": "SP0017",
+      "TenSP": "Sữa tươi trân đường đen",
+      "GiaVon": 20000,
+      "GiaBan": 39000,
+      "dm": "bottled",
+      "ncc": "NCC001",
+      "dv": "DVT02",
+      "HinhAnh": "/images/products/product-17.jpg"
+    },
+    {
+      "MaSP": "SP0018",
+      "TenSP": "Trà sữa lài chai 330ml",
+      "GiaVon": 18000,
+      "GiaBan": 35000,
+      "dm": "bottled",
+      "ncc": "NCC001",
+      "dv": "DVT02",
+      "HinhAnh": "/images/products/product-18.jpg"
+    },
+    {
+      "MaSP": "SP0019",
+      "TenSP": "Nước suối Aquafina",
+      "GiaVon": 5000,
+      "GiaBan": 10000,
+      "dm": "bottled",
+      "ncc": "NCC001",
+      "dv": "DVT02",
+      "HinhAnh": "/images/products/product-19.jpg"
+    },
+    {
+      "MaSP": "SP0020",
+      "TenSP": "Snack Lay’s vị tự nhiên",
+      "GiaVon": 12000,
+      "GiaBan": 20000,
+      "dm": "snack",
+      "ncc": "NCC001",
+      "dv": "DVT03",
+      "HinhAnh": "/images/products/product-20.jpg"
+    },
+    {
+      "MaSP": "SP0021",
+      "TenSP": "Kem ốc quế sô cô la",
+      "GiaVon": 13000,
+      "GiaBan": 22000,
+      "dm": "snack",
+      "ncc": "NCC001",
+      "dv": "DVT03",
+      "HinhAnh": "/images/products/product-21.jpg"
+    },
+    {
+      "MaSP": "SP0022",
+      "TenSP": "Chanh muối mật ong",
+      "GiaVon": 15000,
+      "GiaBan": 35000,
+      "dm": "tea",
+      "ncc": "NCC001",
+      "dv": "DVT01",
+      "HinhAnh": "/images/products/product-22.jpg"
+    },
+    {
+      "MaSP": "SP0023",
+      "TenSP": "Trà tắc xí muội",
+      "GiaVon": 15000,
+      "GiaBan": 35000,
+      "dm": "tea",
+      "ncc": "NCC001",
+      "dv": "DVT01",
+      "HinhAnh": "/images/products/product-23.jpg"
+    },
+    {
+      "MaSP": "SP0024",
+      "TenSP": "Nước ép cà rốt",
+      "GiaVon": 17000,
+      "GiaBan": 39000,
+      "dm": "juice",
+      "ncc": "NCC001",
+      "dv": "DVT01",
+      "HinhAnh": "/images/products/product-24.jpg"
+    }
+  ],
+  "BienTheSP": [
+    { "MaBienThe": "BT0001", "MoTa": "Tiêu chuẩn", "TonKho": 60, "MucTonToiThieu": 10, "sp": "SP0001" },
+    { "MaBienThe": "BT0002", "MoTa": "Tiêu chuẩn", "TonKho": 72, "MucTonToiThieu": 10, "sp": "SP0002" },
+    { "MaBienThe": "BT0003", "MoTa": "Tiêu chuẩn", "TonKho": 45, "MucTonToiThieu": 10, "sp": "SP0003" },
+    { "MaBienThe": "BT0004", "MoTa": "Tiêu chuẩn", "TonKho": 35, "MucTonToiThieu": 10, "sp": "SP0004" },
+    { "MaBienThe": "BT0005", "MoTa": "Tiêu chuẩn", "TonKho": 55, "MucTonToiThieu": 10, "sp": "SP0005" },
+    { "MaBienThe": "BT0006", "MoTa": "Tiêu chuẩn", "TonKho": 40, "MucTonToiThieu": 10, "sp": "SP0006" },
+    { "MaBienThe": "BT0007", "MoTa": "Tiêu chuẩn", "TonKho": 65, "MucTonToiThieu": 10, "sp": "SP0007" },
+    { "MaBienThe": "BT0008", "MoTa": "Tiêu chuẩn", "TonKho": 58, "MucTonToiThieu": 10, "sp": "SP0008" },
+    { "MaBienThe": "BT0009", "MoTa": "Tiêu chuẩn", "TonKho": 90, "MucTonToiThieu": 10, "sp": "SP0009" },
+    { "MaBienThe": "BT0010", "MoTa": "Tiêu chuẩn", "TonKho": 65, "MucTonToiThieu": 10, "sp": "SP0010" },
+    { "MaBienThe": "BT0011", "MoTa": "Tiêu chuẩn", "TonKho": 30, "MucTonToiThieu": 10, "sp": "SP0011" },
+    { "MaBienThe": "BT0012", "MoTa": "Tiêu chuẩn", "TonKho": 24, "MucTonToiThieu": 10, "sp": "SP0012" },
+    { "MaBienThe": "BT0013", "MoTa": "Tiêu chuẩn", "TonKho": 28, "MucTonToiThieu": 10, "sp": "SP0013" },
+    { "MaBienThe": "BT0014", "MoTa": "Tiêu chuẩn", "TonKho": 20, "MucTonToiThieu": 10, "sp": "SP0014" },
+    { "MaBienThe": "BT0015", "MoTa": "Tiêu chuẩn", "TonKho": 50, "MucTonToiThieu": 10, "sp": "SP0015" },
+    { "MaBienThe": "BT0016", "MoTa": "Tiêu chuẩn", "TonKho": 40, "MucTonToiThieu": 10, "sp": "SP0016" },
+    { "MaBienThe": "BT0017", "MoTa": "Tiêu chuẩn", "TonKho": 45, "MucTonToiThieu": 10, "sp": "SP0017" },
+    { "MaBienThe": "BT0018", "MoTa": "Tiêu chuẩn", "TonKho": 85, "MucTonToiThieu": 10, "sp": "SP0018" },
+    { "MaBienThe": "BT0019", "MoTa": "Tiêu chuẩn", "TonKho": 120, "MucTonToiThieu": 10, "sp": "SP0019" },
+    { "MaBienThe": "BT0020", "MoTa": "Tiêu chuẩn", "TonKho": 40, "MucTonToiThieu": 10, "sp": "SP0020" },
+    { "MaBienThe": "BT0021", "MoTa": "Tiêu chuẩn", "TonKho": 30, "MucTonToiThieu": 10, "sp": "SP0021" },
+    { "MaBienThe": "BT0022", "MoTa": "Tiêu chuẩn", "TonKho": 50, "MucTonToiThieu": 10, "sp": "SP0022" },
+    { "MaBienThe": "BT0023", "MoTa": "Tiêu chuẩn", "TonKho": 60, "MucTonToiThieu": 10, "sp": "SP0023" },
+    { "MaBienThe": "BT0024", "MoTa": "Tiêu chuẩn", "TonKho": 70, "MucTonToiThieu": 10, "sp": "SP0024" }
+  ],
+  "Khachhang": [
+    {
+      "MaKH": "KH0001",
+      "HoTenKH": "Nguyễn Minh Anh",
+      "SDT": "0901 234 567",
+      "GhiChu": "Khách quen"
+    },
+    {
+      "MaKH": "KH0002",
+      "HoTenKH": "Trần Hoàng Nam",
+      "SDT": "0912 345 678",
+      "GhiChu": "Uống ít đường"
+    }
+  ],
+  "NhanVien": [
+    {
+      "MaNV": "NV001",
+      "HoTenNV": "Phạm Văn Tú",
+      "SDT": "0909112233",
+      "Email": "tu.pham@goan.vn",
+      "DiaChi": "TP. Hồ Chí Minh",
+      "ChucVu": "Thu ngân",
+      "LoaiNhanVien": "Toàn thời gian",
+      "NgayTao": "2026-01-01"
+    }
+  ]
+}

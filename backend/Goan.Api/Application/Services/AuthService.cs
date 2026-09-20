@@ -13,7 +13,7 @@ public sealed class AuthService(
         LoginRequest request,
         CancellationToken cancellationToken)
     {
-        var identifier = NormalizeIdentifier(request.Identifier);
+        var identifier = request.Identifier.Trim();
         var account = await userRepository.FindByIdentifierAsync(identifier, cancellationToken);
 
         if (account is null || !passwordService.Verify(account, request.Password))
@@ -49,14 +49,6 @@ public sealed class AuthService(
             account.Id,
             account.FullName,
             "Đăng ký thành công. Bạn có thể quay lại đăng nhập.");
-    }
-
-    private static string NormalizeIdentifier(string value)
-    {
-        var trimmedValue = value.Trim();
-        return trimmedValue.Contains('@')
-            ? trimmedValue.ToLowerInvariant()
-            : NormalizePhone(trimmedValue);
     }
 
     private static string NormalizePhone(string value) =>

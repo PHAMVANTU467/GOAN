@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { LoginValidator } from "./LoginValidator";
 
 describe("LoginValidator", () => {
-  it.each(["owner@goan.vn", "0912345678", "+84912345678", "0912 345 678"])(
+  it.each(["admin", " ADMIN ", "owner.shop", "owner_shop", "0123456789", "owner@goan.vn", "0912345678", "+84912345678", "0912 345 678"])(
     "accepts supported identifier %s",
     (identifier) => {
       expect(
@@ -10,7 +10,7 @@ describe("LoginValidator", () => {
       ).toEqual({});
     },
   );
-  it.each(["owner@", "123", "0123456789"])(
+  it.each(["owner@", "123", "bad user", "a".repeat(31)])(
     "rejects invalid identifier %s",
     (identifier) => {
       expect(
@@ -47,7 +47,7 @@ describe("LoginValidator", () => {
         expect(
           LoginValidator.validate({ identifier, password: "password" })
             .identifier,
-        ).toBe("Email hoặc số điện thoại chưa hợp lệ.");
+        ).toBe("Tên đăng nhập, email hoặc số điện thoại chưa hợp lệ.");
       },
     );
   });
