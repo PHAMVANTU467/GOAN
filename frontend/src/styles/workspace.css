@@ -191,7 +191,7 @@
 }
 .pos-sales {
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.7fr);
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 1fr);
   height: 100%;
   position: relative;
 }
@@ -507,11 +507,37 @@
 .pos-order-heading h2 {
   font-size: 16px;
   font-weight: 600;
+  margin: 0;
 }
-.pos-order-heading > span {
-  color: var(--pos-muted);
-  font-size: 10px;
-  white-space: nowrap;
+.pos-order-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+}
+.pos-order-clear-btn {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  padding: 0;
+}
+.pos-order-clear-btn:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #dc2626;
+}
+.pos-order-id {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0088d7;
+  letter-spacing: 0.5px;
 }
 .pos-order-type {
   display: flex;

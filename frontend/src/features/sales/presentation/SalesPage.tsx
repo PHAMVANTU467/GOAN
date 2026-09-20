@@ -9,7 +9,6 @@ import {
   Search,
   ShoppingBag,
   SlidersHorizontal,
-  Trash2,
   UserRound,
   X,
 } from "lucide-react";
@@ -223,12 +222,26 @@ export function SalesPage({
             <ShoppingBag size={21} />
             <div className="pos-order-title-group">
               <h2>Đơn hàng hiện tại</h2>
-              {catalog?.store?.name && (
-                <span className="pos-order-store-name">{catalog.store.name}</span>
-              )}
             </div>
           </div>
-          <span>#ĐƠN MỚI</span>
+          <div className="pos-order-meta">
+            {lines.length > 0 && (
+              <button
+                className="pos-order-clear-btn"
+                title="Xóa đơn hiện tại"
+                aria-label="Xóa đơn hiện tại"
+                onClick={() => {
+                  setLines([]);
+                  setDiscount(0);
+                  setNote("");
+                  setNotice("Đã xóa sản phẩm khỏi đơn hiện tại.");
+                }}
+              >
+                <X size={13} />
+              </button>
+            )}
+            <span className="pos-order-id">#HD0001</span>
+          </div>
         </header>
         <div className="pos-order-type">
           <button
@@ -385,22 +398,7 @@ export function SalesPage({
             Thanh toán
             <ArrowRight size={19} />
           </button>
-          <p className="pos-checkout-hint">
-            Dữ liệu mẫu · Chưa phát sinh giao dịch thực tế
-          </p>
-          {lines.length > 0 && (
-            <button
-              className="pos-clear-cart"
-              onClick={() => {
-                setLines([]);
-                setDiscount(0);
-                setNote("");
-                setNotice("Đã xóa sản phẩm khỏi đơn hiện tại.");
-              }}
-            >
-              <Trash2 size={13} /> Xóa đơn hiện tại
-            </button>
-          )}
+
         </div>
       </aside>
       <div className="pos-notice" role="status">
