@@ -1,0 +1,11 @@
+{
+  "name": "goan",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "postinstall": "cd web && npm install && npm run build",
+    "build": "cd web && npm install && npm run build",
+    "start": "node server.js"
+  }
+}
