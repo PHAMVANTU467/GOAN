@@ -13,6 +13,7 @@
   /* Thay đổi giá trị này để tăng hoặc giảm kích thước logo đăng nhập. */
   --login-logo-width: 160px;
   --login-card-width: 460px;
+  --register-card-width: 520px;
 }
 
 * {
@@ -83,7 +84,7 @@ a {
 
 .background-image,
 .background-overlay {
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: -2;
 }
@@ -105,13 +106,17 @@ a {
   backdrop-filter: blur(1.5px);
 }
 
-.login-layout {
+.auth-layout {
   width: min(var(--login-card-width), 100%);
   min-width: 0;
   margin: auto;
 }
 
-.login-card {
+.auth-layout--register {
+  width: min(var(--register-card-width), 100%);
+}
+
+.auth-card {
   width: 100%;
   min-width: 0;
   padding: clamp(28px, 4vw, 38px) clamp(24px, 4vw, 40px) 30px;
@@ -122,7 +127,7 @@ a {
   box-shadow: 0 28px 80px rgba(0, 15, 28, 0.4);
 }
 
-.brand {
+.auth-brand {
   display: block;
   width: var(--login-logo-width);
   max-width: 55%;
@@ -131,24 +136,36 @@ a {
   user-select: none;
 }
 
-.brand img {
+.auth-brand img {
   display: block;
   width: 100%;
 }
 
-.welcome {
+.auth-welcome {
   text-align: center;
 }
 
-.welcome h2 {
+.auth-welcome h1 {
   margin: 0 0 28px;
   color: #102b43;
   font-size: clamp(24px, 3vw, 27px);
   letter-spacing: -0.7px;
 }
 
-.login-form {
+.auth-welcome p {
+  margin: -17px auto 25px;
+  color: #64798a;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.auth-form {
   width: 100%;
+}
+
+.register-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .field-group {
@@ -284,7 +301,7 @@ a {
   box-shadow: 0 10px 24px rgba(8, 127, 231, 0.32);
 }
 
-.signup {
+.auth-switch {
   margin: 20px 0 0;
   text-align: center;
   color: #738496;
@@ -360,13 +377,17 @@ dialog p {
     padding: 14px;
   }
 
-  .login-card {
+  .auth-card {
     padding: 27px 22px 24px;
     border-radius: 15px;
   }
 
-  .welcome h2 {
+  .auth-welcome h1 {
     margin-bottom: 24px;
+  }
+
+  .auth-welcome p {
+    margin-top: -14px;
   }
 
   .field-group label,
@@ -380,7 +401,7 @@ dialog p {
 
   .remember-option,
   .text-button,
-  .signup {
+  .auth-switch {
     font-size: 9px;
   }
 }
@@ -392,7 +413,7 @@ dialog p {
     gap: 12px;
   }
 
-  .login-card {
+  .auth-card {
     padding-inline: 17px;
     border-radius: 12px;
   }
@@ -403,15 +424,15 @@ dialog p {
     padding-block: 14px;
   }
 
-  .login-card {
+  .auth-card {
     padding-block: 24px 22px;
   }
 
-  .brand {
+  .auth-brand {
     margin-bottom: 14px;
   }
 
-  .welcome h2 {
+  .auth-welcome h1 {
     margin-bottom: 20px;
   }
 
@@ -428,7 +449,7 @@ dialog p {
     margin-bottom: 15px;
   }
 
-  .signup {
+  .auth-switch {
     margin-top: 14px;
   }
 }
