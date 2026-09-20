@@ -54,8 +54,11 @@ export class HttpAuthService implements AuthService {
       );
     }
 
-    if (!("message" in responseBody)) {
-      throw new Error("Phản hồi từ máy chủ không đúng định dạng.");
+    const message = responseBody.message ?? (responseBody as unknown as { Message?: string }).Message;
+    if (!message) {
+      throw new Error(
+        "Phản hồi từ máy chủ không đúng định dạng (backend chưa sẵn sàng hoặc trả về HTML). Vui lòng đảm bảo backend đang chạy tại cổng 5080.",
+      );
     }
 
     return responseBody;
