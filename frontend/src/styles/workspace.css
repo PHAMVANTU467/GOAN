@@ -191,7 +191,7 @@
 }
 .sales-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   height: 100%;
   position: relative;
 }
@@ -253,16 +253,11 @@
 
 .category-pills {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
-  overflow-x: auto;
-  padding: 14px 2px;
+  gap: 8px 10px;
+  padding: 12px 2px;
   flex-shrink: 0;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.category-pills::-webkit-scrollbar {
-  display: none;
 }
 .category-pill {
   display: inline-flex;
@@ -325,8 +320,8 @@
 }
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
 }
 .product-card {
   aspect-ratio: 1 / 1;
@@ -1210,29 +1205,15 @@
   margin-bottom: 20px;
   font-size: 13px;
 }
-@media (min-width: 1600px) {
-  .product-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-  .sales-layout {
-    grid-template-columns: minmax(0, 1fr) 380px;
-  }
-}
 @media (max-width: 1270px) {
   .app-sidebar {
     width: 100px;
-  }
-  .sales-layout {
-    grid-template-columns: minmax(0, 1fr) 330px;
   }
   .catalog-section {
     padding: 22px 18px 0;
   }
   .order-section {
     padding: 26px 18px 0;
-  }
-  .product-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .results-heading > span {
     display: none;
