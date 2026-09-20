@@ -191,7 +191,7 @@
 }
 .pos-sales {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 358px;
+  grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.7fr);
   height: 100%;
   position: relative;
 }
@@ -345,7 +345,8 @@
   gap: 14px;
 }
 .pos-product {
-  display: block;
+  display: flex;
+  flex-direction: column;
   text-align: left;
   background: white;
   border: 1px solid #e0e8ef !important;
@@ -365,12 +366,13 @@
   background: #f4faff;
 }
 .pos-product-image {
-  height: 150px;
+  height: 135px;
   position: relative;
   margin: 8px 8px 0;
   overflow: hidden;
   border-radius: 8px;
   background: #f6f8fa;
+  flex-shrink: 0;
 }
 .pos-product-image img {
   width: 100%;
@@ -393,23 +395,25 @@
   font-size: 12px;
 }
 .pos-product-info {
-  padding: 10px 12px 11px;
+  padding: 8px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
 }
 .pos-product-top {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 8px;
-  min-height: 38px;
-  margin-bottom: 8px;
+  gap: 6px;
 }
 .pos-product-title,
 .pos-product h3 {
   flex: 1;
   min-width: 0;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 600;
-  line-height: 19px;
+  line-height: 18px;
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -441,8 +445,9 @@
   justify-content: space-between;
   align-items: center;
   gap: 4px;
-  padding-top: 8px;
+  padding-top: 6px;
   border-top: 1px solid #edf1f6;
+  margin-top: auto;
 }
 .pos-product-price {
   display: flex;
@@ -1135,8 +1140,7 @@
     padding: 8px;
   }
   .pos-product-top {
-    min-height: 34px;
-    margin-bottom: 6px;
+    margin-bottom: 0;
     gap: 6px;
   }
   .pos-product-title,
