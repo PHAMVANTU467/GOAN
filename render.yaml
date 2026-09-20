@@ -1,7 +1,24 @@
 services:
   - type: web
+    name: goan-backend
+    env: docker
+    dockerfilePath: ./Dockerfile.backend
+    plan: free
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: FrontendOrigins__0
+        value: https://goan.id.vn
+
+  - type: web
     name: goan-frontend
     env: node
     plan: free
     buildCommand: yarn
     startCommand: yarn start
+    envVars:
+      - key: BACKEND_URL
+        fromService:
+          type: web
+          name: goan-backend
+          property: host

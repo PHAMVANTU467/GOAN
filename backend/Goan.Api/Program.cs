@@ -15,9 +15,18 @@ builder.Services.AddCors(options =>
             .GetSection("FrontendOrigins")
             .Get<string[]>() ?? [];
 
-        policy.WithOrigins(origins)
-            .AllowAnyHeader()
-            .AllowAnyMethod();
+        if (origins.Length > 0)
+        {
+            policy.WithOrigins(origins)
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        }
+        else
+        {
+            policy.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        }
     });
 });
 
@@ -27,10 +36,7 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    await DevelopmentAccountSeeder.SeedAsync(app.Services);
-}
+await DevelopmentAccountSeeder.SeedAsync(app.Services);
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseCors("Frontend");
