@@ -250,23 +250,7 @@
   background: transparent;
   color: var(--workspace-muted);
 }
-.sort-select {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 0 11px;
-  background: white;
-  border: 1px solid #dce1e7;
-  border-radius: 8px;
-  color: var(--color-text-secondary);
-}
-.sort-select select {
-  background: transparent;
-  border: 0;
-  color: inherit;
-  font-size: 13px;
-  max-width: 108px;
-}
+
 .category-pills {
   display: flex;
   align-items: center;
@@ -1284,9 +1268,7 @@
   .search-bar {
     min-width: 180px;
   }
-  .sort-select {
-    height: 38px;
-  }
+
   .user-profile a {
     margin-left: 3px;
   }

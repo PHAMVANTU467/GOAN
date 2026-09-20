@@ -9,7 +9,6 @@ import {
   Plus,
   Search,
   ShoppingBag,
-  SlidersHorizontal,
   UserRound,
   X,
 } from "lucide-react";
@@ -35,7 +34,6 @@ export function SalesPage({
   const [error, setError] = useState(false);
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("all");
-  const [sort, setSort] = useState("default");
   const [orders, setOrders] = useState<OrderTab[]>([
     { id: "HD0001", lines: [], customer: "", discount: 0, note: "" },
   ]);
@@ -141,13 +139,7 @@ export function SalesPage({
           normalizeSearch(query),
         ),
     )
-    .sort((a, b) =>
-      sort === "price"
-        ? a.price - b.price
-        : sort === "name"
-          ? a.name.localeCompare(b.name, "vi")
-          : 0,
-    );
+    .sort((a, b) => a.name.localeCompare(b.name, "vi"));
   function add(product: Product) {
     setLines((current) =>
       current.some((line) => line.product.id === product.id)
@@ -191,18 +183,6 @@ export function SalesPage({
                 <X size={16} />
               </button>
             )}
-          </label>
-          <label className="sort-select">
-            <SlidersHorizontal size={18} />
-            <select
-              aria-label="Sắp xếp sản phẩm"
-              value={sort}
-              onChange={(event) => setSort(event.target.value)}
-            >
-              <option value="default">Mặc định</option>
-              <option value="price">Giá tăng dần</option>
-              <option value="name">Tên A–Z</option>
-            </select>
           </label>
         </div>
         <CategoryNavigation categories={catalog?.categories ?? []} selected={category} onSelect={setCategory} />
