@@ -1,11 +1,11 @@
-# Khung giao diện GOAN POS
+# Khung giao diện GOAN
 
 ## Cập nhật giao diện 21/09/2026
 
 - Bỏ hàng tiêu đề Bán hàng/Ca đang mở và khối cửa hàng/chi nhánh trên đầu trang.
 - Navigation và danh mục sản phẩm dùng icon màu phía trên, tên phía dưới; mục chọn dùng nền và viền xanh GOAN. Giữ chức năng lọc, tìm kiếm, giỏ hàng và thanh toán mẫu.
 - Thẻ sản phẩm dùng nền phẳng, giá xanh đậm, dấu chọn và số lượng rõ ràng; vùng tổng tiền được tách bằng nền xanh nhạt.
-- Header đọc `fullName` từ kết quả đăng nhập API. `AccountProfileStore` chỉ lưu `userId` và `fullName` cho hiển thị, không lưu mật khẩu, không phải token xác thực. Tùy chọn duy trì đăng nhập quyết định localStorage/sessionStorage; về đăng nhập bằng nút trên header xóa profile. Mở trực tiếp POS khi chưa có profile hiển thị “Chưa đăng nhập”.
+- Header đọc `fullName` từ kết quả đăng nhập API. `AccountProfileStore` chỉ lưu `userId` và `fullName` cho hiển thị, không lưu mật khẩu, không phải token xác thực. Tùy chọn duy trì đăng nhập quyết định localStorage/sessionStorage; về đăng nhập bằng nút trên header xóa profile. Mở trực tiếp giao diện khi chưa có profile hiển thị “Chưa đăng nhập”.
 - Đã kiểm tra build, 40 test hiện có, luồng UI với phản hồi đăng nhập mô phỏng, giữ tên khi tải lại, lọc danh mục, giữ giỏ khi đổi module và viewport 390/768/1280px.
 
 ## Tài khoản mặc định (Development)
@@ -27,8 +27,7 @@ Trang bán hàng hỗ trợ tìm kiếm không dấu/tìm mã, lọc danh mục,
 - `features/sales/application`: contract `CatalogService` và phép tính hiển thị.
 - `features/sales/infrastructure`: `MockCatalogService`, `catalog.json`.
 - `features/sales/presentation`: giao diện bán hàng.
-- `app/Workspace.tsx`: layout và navigation.
-- `styles/workspace.css`: style được giới hạn bằng tiền tố `pos-`.
+- `styles/workspace.css`: style cho màn hình bán hàng và không gian làm việc.
 
 Khi tích hợp, bổ sung HTTP adapter triển khai `CatalogService`, inject tại `app/App.tsx`. React gọi ASP.NET Core API; SQL Server thuộc backend. Giá, giảm giá, quyền và giao dịch phải được backend xác thực khi triển khai nghiệp vụ.
 

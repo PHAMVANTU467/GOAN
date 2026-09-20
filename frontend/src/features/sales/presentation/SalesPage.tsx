@@ -174,10 +174,10 @@ export function SalesPage({
     checkoutButton.current?.focus();
   }
   return (
-    <main className="pos-sales">
-      <section className="pos-catalog" aria-label="Danh sách sản phẩm">
-        <div className="pos-search-row">
-          <label className="pos-search">
+    <main className="sales-layout">
+      <section className="catalog-section" aria-label="Danh sách sản phẩm">
+        <div className="search-row">
+          <label className="search-bar">
             <Search size={20} />
             <input
               aria-label="Tìm kiếm sản phẩm"
@@ -191,7 +191,7 @@ export function SalesPage({
               </button>
             )}
           </label>
-          <label className="pos-sort">
+          <label className="sort-select">
             <SlidersHorizontal size={18} />
             <select
               aria-label="Sắp xếp sản phẩm"
@@ -205,7 +205,7 @@ export function SalesPage({
           </label>
         </div>
         <CategoryNavigation categories={catalog?.categories ?? []} selected={category} onSelect={setCategory} />
-        <div className="pos-results-heading">
+        <div className="results-heading">
           <h2>
             {category === "all"
               ? "Tất cả sản phẩm"
@@ -214,22 +214,22 @@ export function SalesPage({
           </h2>
           <span>Chạm để thêm vào đơn</span>
         </div>
-        <div className="pos-product-scroll">
+        <div className="product-scroll">
           {error ? (
-            <div className="pos-empty">
+            <div className="empty-state">
               <p>Không tải được danh sách sản phẩm. Vui lòng tải lại trang.</p>
             </div>
           ) : !catalog ? (
-            <div className="pos-empty" role="status">
+            <div className="empty-state" role="status">
               Đang tải sản phẩm…
             </div>
           ) : products.length === 0 ? (
-            <div className="pos-empty">
+            <div className="empty-state">
               <Search size={30} />
               <h3>Chưa tìm thấy sản phẩm</h3>
               <p>Thử tên hoặc mã khác, hoặc chọn tất cả danh mục.</p>
               <button
-                className="pos-secondary"
+                className="btn-secondary"
                 onClick={() => {
                   setQuery("");
                   setCategory("all");
@@ -239,7 +239,7 @@ export function SalesPage({
               </button>
             </div>
           ) : (
-            <div className="pos-product-grid">
+            <div className="product-grid">
               {products.map((product) => {
                 const quantity = lines.find(
                   (line) => line.product.id === product.id,
@@ -247,39 +247,39 @@ export function SalesPage({
                 return (
                   <button
                     key={product.id}
-                    className={`pos-product ${quantity ? "in-cart" : ""}`}
+                    className={`product-card ${quantity ? "in-cart" : ""}`}
                     data-category={product.categoryId}
                     onClick={() => add(product)}
                     aria-label={`Thêm ${product.name}, ${money(product.price)}`}
                   >
-                    <div className="pos-product-image">
+                    <div className="product-image">
                       <img
                         src={product.image}
                         alt={product.name}
                         loading="lazy"
                       />
                       {quantity && (
-                        <span className="pos-product-quantity">
+                        <span className="product-quantity">
                           <Check size={12} />
                           {quantity}
                         </span>
                       )}
                     </div>
-                    <div className="pos-product-info">
-                      <div className="pos-product-top">
-                        <h3 className="pos-product-title" title={product.name}>
+                    <div className="product-info">
+                      <div className="product-top">
+                        <h3 className="product-title" title={product.name}>
                           {product.name}
                         </h3>
-                        <span className="pos-product-stock">
+                        <span className="product-stock">
                           Còn: <strong>{product.stock ?? 50}</strong>
                         </span>
                       </div>
-                      <div className="pos-product-bottom">
-                        <div className="pos-product-price">
+                      <div className="product-bottom">
+                        <div className="product-price">
                           <strong>{money(product.price)}</strong>
                           <small>/ {product.unit}</small>
                         </div>
-                        <span className="pos-add">
+                        <span className="btn-add-product">
                           <Plus size={18} />
                         </span>
                       </div>
@@ -291,9 +291,9 @@ export function SalesPage({
           )}
         </div>
       </section>
-      <aside className="pos-order" aria-label="Đơn hàng">
-        <div className="pos-order-tabs-bar" role="tablist" aria-label="Danh sách đơn hàng">
-          <div className="pos-order-tabs-list">
+      <aside className="order-section" aria-label="Đơn hàng">
+        <div className="order-tabs-bar" role="tablist" aria-label="Danh sách đơn hàng">
+          <div className="order-tabs-list">
             {orders.map((order) => {
               const isActive = order.id === activeOrder.id;
               const itemCount = order.lines.reduce(
@@ -305,14 +305,14 @@ export function SalesPage({
                   key={order.id}
                   role="tab"
                   aria-selected={isActive}
-                  className={`pos-order-tab-box ${isActive ? "active" : ""}`}
+                  className={`order-tab-box ${isActive ? "active" : ""}`}
                   onClick={() => setActiveOrderId(order.id)}
                 >
-                  <div className="pos-order-tab-header">
-                    <span className="pos-order-tab-label">Đơn</span>
+                  <div className="order-tab-header">
+                    <span className="order-tab-label">Đơn</span>
                     <button
                       type="button"
-                      className="pos-order-tab-cancel"
+                      className="order-tab-cancel"
                       title={`Hủy đơn #${order.id}`}
                       aria-label={`Hủy đơn #${order.id}`}
                       onClick={(e) => handleCloseOrder(order.id, e)}
@@ -320,10 +320,10 @@ export function SalesPage({
                       <X size={11} />
                     </button>
                   </div>
-                  <div className="pos-order-tab-body">
-                    <span className="pos-order-tab-code">#{order.id}</span>
+                  <div className="order-tab-body">
+                    <span className="order-tab-code">#{order.id}</span>
                     {itemCount > 0 && (
-                      <span className="pos-order-tab-badge">{itemCount}</span>
+                      <span className="order-tab-badge">{itemCount}</span>
                     )}
                   </div>
                 </div>
@@ -332,7 +332,7 @@ export function SalesPage({
           </div>
           <button
             type="button"
-            className="pos-order-new-btn"
+            className="order-new-btn"
             title="Thêm đơn hàng mới"
             aria-label="Thêm đơn hàng mới"
             onClick={handleAddNewOrder}
@@ -340,8 +340,8 @@ export function SalesPage({
             <Plus size={18} />
           </button>
         </div>
-        <label className="pos-customer">
-          <span className="pos-customer-icon">
+        <label className="customer-select">
+          <span className="customer-icon">
             <UserRound size={19} />
           </span>
           <div>
@@ -361,15 +361,15 @@ export function SalesPage({
           </div>
           <ChevronDown size={16} />
         </label>
-        <div className="pos-order-list-heading">
+        <div className="order-list-heading">
           <span>
             Sản phẩm <b>{count}</b>
           </span>
           <span>Thành tiền</span>
         </div>
-        <div className="pos-cart-lines">
+        <div className="cart-lines">
           {lines.length === 0 ? (
-            <div className="pos-cart-empty">
+            <div className="cart-empty">
               <span>
                 <ShoppingBag size={35} strokeWidth={1.4} />
               </span>
@@ -386,13 +386,13 @@ export function SalesPage({
             </div>
           ) : (
             lines.map((line) => (
-              <article className="pos-cart-line" key={line.product.id}>
+              <article className="cart-line" key={line.product.id}>
                 <img src={line.product.image} alt="" />
-                <div className="pos-line-content">
+                <div className="line-content">
                   <h3>{line.product.name}</h3>
                   <small>{money(line.product.price)}</small>
-                  <div className="pos-line-bottom">
-                    <div className="pos-stepper">
+                  <div className="line-bottom">
+                    <div className="qty-stepper">
                       <button
                         aria-label={`Giảm ${line.product.name}`}
                         onClick={() => changeQuantity(line.product.id, -1)}
@@ -411,7 +411,7 @@ export function SalesPage({
                   </div>
                 </div>
                 <button
-                  className="pos-remove"
+                  className="btn-remove-item"
                   aria-label={`Xóa ${line.product.name}`}
                   onClick={() =>
                     setLines((current) =>
@@ -427,8 +427,8 @@ export function SalesPage({
             ))
           )}
         </div>
-        <div className="pos-order-summary">
-          <label className="pos-note">
+        <div className="order-summary">
+          <label className="order-note-input">
             <input
               aria-label="Ghi chú đơn hàng"
               placeholder="Thêm ghi chú cho đơn hàng…"
@@ -437,17 +437,17 @@ export function SalesPage({
               maxLength={250}
             />
           </label>
-          <div className="pos-summary-row">
+          <div className="summary-row">
             <span>
               Tạm tính <small>({count} sản phẩm)</small>
             </span>
             <strong>{money(totals.subtotal)}</strong>
           </div>
-          <div className="pos-summary-row">
-            <label htmlFor="pos-discount">Giảm giá</label>
-            <div className="pos-discount">
+          <div className="summary-row">
+            <label htmlFor="discount-field">Giảm giá</label>
+            <div className="discount-input-wrapper">
               <input
-                id="pos-discount"
+                id="discount-field"
                 type="number"
                 min="0"
                 max={totals.subtotal}
@@ -467,13 +467,13 @@ export function SalesPage({
               <span>₫</span>
             </div>
           </div>
-          <div className="pos-total">
+          <div className="summary-total">
             <span>Tổng thanh toán</span>
             <strong>{money(totals.total)}</strong>
           </div>
           <button
             ref={checkoutButton}
-            className="pos-checkout"
+            className="btn-checkout"
             disabled={!lines.length}
             onClick={() => dialog.current?.showModal()}
           >
@@ -484,18 +484,18 @@ export function SalesPage({
 
         </div>
       </aside>
-      <div className="pos-notice" role="status">
+      <div className="floating-notice" role="status">
         {notice}
       </div>
-      <dialog className="pos-payment" ref={dialog} onCancel={closePayment}>
+      <dialog className="payment-dialog" ref={dialog} onCancel={closePayment}>
         <button
-          className="pos-payment-close"
+          className="payment-dialog-close"
           aria-label="Đóng thanh toán"
           onClick={closePayment}
         >
           <X size={20} />
         </button>
-        <span className="pos-section-kicker">
+        <span className="section-kicker">
           {catalog?.store?.name ? `${catalog.store.name.toUpperCase()} · XEM TRƯỚC ĐƠN HÀNG` : "XEM TRƯỚC ĐƠN HÀNG"}
         </span>
         <h2>Thanh toán</h2>
@@ -505,8 +505,8 @@ export function SalesPage({
             : "Khách lẻ"}{" "}
           · #{activeOrder.id} · {count} sản phẩm
         </p>
-        <div className="pos-payment-total">{money(totals.total)}</div>
-        <div className="pos-payment-methods">
+        <div className="payment-dialog-total">{money(totals.total)}</div>
+        <div className="payment-methods">
           {[
             { id: "cash", name: "Tiền mặt" },
             { id: "transfer", name: "Chuyển khoản" },
@@ -523,12 +523,12 @@ export function SalesPage({
           ))}
         </div>
         {note && <p>Ghi chú: {note}</p>}
-        <p className="pos-payment-disclaimer">
+        <p className="payment-disclaimer">
           Đây là bản xem trước giao diện. Đơn hàng chưa được lưu và không thu
           tiền thực tế.
         </p>
         <button
-          className="pos-primary"
+          className="btn-primary"
           onClick={() => {
             closePayment();
             setNotice(

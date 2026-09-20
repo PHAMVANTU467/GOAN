@@ -17,7 +17,7 @@ import type {
 import db from "./catalog.json";
 
 export class MockCatalogService implements CatalogService {
-  // Lấy dữ liệu dạng Catalog cho giao diện POS
+  // Lấy dữ liệu dạng Catalog cho giao diện bán hàng
   async getCatalog(): Promise<Catalog> {
     const donViMap = new Map(
       (db.DonViTinh as DonViTinh[]).map((d) => [d.MaDonVi, d.TenDonVi]),

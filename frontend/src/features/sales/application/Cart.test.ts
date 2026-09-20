@@ -16,8 +16,8 @@ const lines: CartLine[] = [
     quantity: 2,
   },
 ];
-describe("POS preview totals", () => {
-  it("calculates quantities and a fixed discount", () => {
+describe("Sales preview totals", () => {
+  it("calculates totals accurately and clamps discounts", () => {
     expect(calculateTotals(lines, 10000)).toEqual({
       subtotal: 70000,
       discount: 10000,

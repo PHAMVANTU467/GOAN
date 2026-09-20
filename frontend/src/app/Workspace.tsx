@@ -61,11 +61,11 @@ export function Workspace({
   const fullName = account?.fullName.trim() || "Chưa đăng nhập";
   const initials = account?.fullName.trim().split(/\s+/).slice(-2).map(part => part[0]).join("").toLocaleUpperCase("vi-VN") || "?";
   return (
-    <div className="pos-shell">
-      <aside className="pos-sidebar">
+    <div className="app-shell">
+      <aside className="app-sidebar">
         <a
           href="/sales"
-          className="pos-brand"
+          className="app-brand"
           onClick={(event) => {
             event.preventDefault();
             navigate("/sales");
@@ -82,7 +82,7 @@ export function Workspace({
                 aria-label={label}
                 title={label}
                 aria-current={path === target ? "page" : undefined}
-                className={`${path === target ? "active" : ""} ${index === 8 ? "pos-settings-link" : ""}`}
+                className={`${path === target ? "active" : ""} ${index === 8 ? "settings-nav-link" : ""}`}
                 onClick={(event) => {
                   if (!event.ctrlKey && !event.metaKey && !event.shiftKey) {
                     event.preventDefault();
@@ -90,23 +90,23 @@ export function Workspace({
                   }
                 }}
               >
-                <span className="pos-nav-icon" data-tone={index % 6} aria-hidden="true"><Icon size={22} /></span>
-                <span className="pos-nav-label">{label}</span>
+                <span className="nav-icon" data-tone={index % 6} aria-hidden="true"><Icon size={22} /></span>
+                <span className="nav-label">{label}</span>
               </a>
             ),
           )}
         </nav>
       </aside>
-      <div className="pos-workspace">
-        <header className="pos-topbar">
-          <div className="pos-store-badge">
-            <span className="pos-store-icon" aria-hidden="true">
+      <div className="workspace-main">
+        <header className="app-topbar">
+          <div className="store-badge">
+            <span className="store-icon" aria-hidden="true">
               <Store size={16} />
             </span>
-            <strong className="pos-store-name">{store?.name ?? "Coffee & Tea"}</strong>
+            <strong className="store-name">{store?.name ?? "Coffee & Tea"}</strong>
           </div>
-          <div className="pos-profile">
-            <span className="pos-avatar" aria-hidden="true">{initials}</span>
+          <div className="user-profile">
+            <span className="user-avatar" aria-hidden="true">{initials}</span>
             <strong title={fullName}>{fullName}</strong>
             <a
               href="/"
@@ -120,22 +120,22 @@ export function Workspace({
             </a>
           </div>
         </header>
-        <div hidden={path !== "/sales"} className="pos-sales-container">
+        <div hidden={path !== "/sales"} className="sales-container">
           <SalesPage catalogService={catalogService} />
         </div>
         {path !== "/sales" && (
-          <main className="pos-placeholder">
-            <span className="pos-section-kicker">GOAN WORKSPACE</span>
+          <main className="placeholder-page">
+            <span className="section-kicker">GOAN WORKSPACE</span>
             <h1>{active.label}</h1>
             <p>
               Không gian quản lý {active.label.toLocaleLowerCase("vi-VN")} của
               cửa hàng.
             </p>
             <section>
-              <span className="pos-placeholder-icon">
+              <span className="placeholder-icon">
                 <active.icon size={34} />
               </span>
-              <span className="pos-demo">Đang xây dựng</span>
+              <span className="demo-badge">Đang xây dựng</span>
               <h2>{active.label}</h2>
               <p>
                 Khu vực {active.label.toLocaleLowerCase("vi-VN")} đã sẵn sàng
@@ -144,7 +144,7 @@ export function Workspace({
                 Nội dung và nghiệp vụ sẽ được bổ sung ở giai đoạn tiếp theo.
               </p>
               <button
-                className="pos-primary"
+                className="btn-primary"
                 onClick={() => navigate("/sales")}
               >
                 <Coffee size={18} /> Trải nghiệm bán hàng

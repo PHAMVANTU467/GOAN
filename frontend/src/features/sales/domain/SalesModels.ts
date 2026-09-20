@@ -92,7 +92,7 @@ export interface CTHD {
   ThanhTien: number;
 }
 
-// Cấu trúc View Model phục vụ giao diện POS
+// Cấu trúc View Model phục vụ giao diện bán hàng
 export interface Product {
   id: string;
   sku: string;

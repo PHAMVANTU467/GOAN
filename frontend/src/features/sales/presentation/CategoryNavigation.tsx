@@ -10,13 +10,13 @@ export function CategoryNavigation({
   onSelect: (id: string) => void;
 }) {
   return (
-    <nav className="pos-categories" aria-label="Danh mục sản phẩm">
+    <nav className="category-pills" aria-label="Danh mục sản phẩm">
       {[{ id: "all", name: "Tất cả" }, ...categories].map((category) => (
         <button
           key={category.id}
           type="button"
           aria-pressed={selected === category.id}
-          className={`pos-category-pill ${selected === category.id ? "selected" : ""}`}
+          className={`category-pill ${selected === category.id ? "selected" : ""}`}
           onClick={() => onSelect(category.id)}
         >
           {category.name}
