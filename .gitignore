@@ -1,0 +1,14 @@
+# Dependencies & outputs
+node_modules/
+web/node_modules/
+dist/
+web/dist/
+*.tsbuildinfo
+web/*.tsbuildinfo
+.env
+*.log
+
+# Excluded by request
+docs/
+skill/
+GOAN.txt
