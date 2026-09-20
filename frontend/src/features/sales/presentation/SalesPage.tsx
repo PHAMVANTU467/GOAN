@@ -4,6 +4,7 @@ import {
   Check,
   ChevronDown,
   CreditCard,
+  FileText,
   Minus,
   Plus,
   Search,
@@ -342,9 +343,9 @@ export function SalesPage({
         </div>
         <label className="customer-select">
           <span className="customer-icon">
-            <UserRound size={19} />
+            <UserRound size={18} />
           </span>
-          <div>
+          <div className="customer-info">
             <small>Khách hàng</small>
             <select
               aria-label="Chọn khách hàng"
@@ -363,7 +364,7 @@ export function SalesPage({
         </label>
         <div className="order-list-heading">
           <span>
-            Sản phẩm <b>{count}</b>
+            Danh sách món <b>{count}</b>
           </span>
           <span>Thành tiền</span>
         </div>
@@ -371,105 +372,132 @@ export function SalesPage({
           {lines.length === 0 ? (
             <div className="cart-empty">
               <span>
-                <ShoppingBag size={35} strokeWidth={1.4} />
+                <ShoppingBag size={32} strokeWidth={1.5} />
               </span>
-              <h3>Đơn hàng đang chờ bạn</h3>
+              <h3>Đơn hàng chưa có món nào</h3>
               <p>
-                Chọn sản phẩm bên trái
+                Chọn sản phẩm bên thực đơn
                 <br />
-                để bắt đầu một đơn hàng mới.
+                để thêm vào đơn hàng hiện tại.
               </p>
               <div>
-                <span>1</span> Chọn món <ArrowRight size={13} />
+                <span>1</span> Chọn món <ArrowRight size={12} />
                 <span>2</span> Thanh toán
               </div>
             </div>
           ) : (
             lines.map((line) => (
               <article className="cart-line" key={line.product.id}>
-                <img src={line.product.image} alt="" />
+                <div className="cart-item-image">
+                  <img src={line.product.image} alt={line.product.name} />
+                </div>
                 <div className="line-content">
-                  <h3>{line.product.name}</h3>
-                  <small>{money(line.product.price)}</small>
+                  <div className="line-header">
+                    <h3 title={line.product.name}>{line.product.name}</h3>
+                    <button
+                      type="button"
+                      className="btn-remove-item"
+                      aria-label={`Xóa ${line.product.name}`}
+                      title={`Xóa ${line.product.name}`}
+                      onClick={() =>
+                        setLines((current) =>
+                          current.filter(
+                            (item) => item.product.id !== line.product.id,
+                          ),
+                        )
+                      }
+                    >
+                      <X size={13} />
+                    </button>
+                  </div>
+                  <div className="line-pricing">
+                    <span>{money(line.product.price)}</span>
+                  </div>
                   <div className="line-bottom">
                     <div className="qty-stepper">
                       <button
+                        type="button"
                         aria-label={`Giảm ${line.product.name}`}
                         onClick={() => changeQuantity(line.product.id, -1)}
                       >
-                        <Minus size={13} />
+                        <Minus size={12} />
                       </button>
                       <span>{line.quantity}</span>
                       <button
+                        type="button"
                         aria-label={`Tăng ${line.product.name}`}
                         onClick={() => changeQuantity(line.product.id, 1)}
                       >
-                        <Plus size={13} />
+                        <Plus size={12} />
                       </button>
                     </div>
-                    <strong>{money(line.product.price * line.quantity)}</strong>
+                    <strong className="line-total-price">{money(line.product.price * line.quantity)}</strong>
                   </div>
                 </div>
-                <button
-                  className="btn-remove-item"
-                  aria-label={`Xóa ${line.product.name}`}
-                  onClick={() =>
-                    setLines((current) =>
-                      current.filter(
-                        (item) => item.product.id !== line.product.id,
-                      ),
-                    )
-                  }
-                >
-                  <X size={14} />
-                </button>
               </article>
             ))
           )}
         </div>
         <div className="order-summary">
-          <label className="order-note-input">
+          <div className="order-note-input-wrapper">
+            <FileText size={15} className="order-note-icon" />
             <input
               aria-label="Ghi chú đơn hàng"
-              placeholder="Thêm ghi chú cho đơn hàng…"
+              placeholder="Ghi chú đơn hàng (ít đá, mang đi…)"
               value={note}
               onChange={(event) => setNote(event.target.value)}
               maxLength={250}
             />
-          </label>
-          <div className="summary-row">
-            <span>
-              Tạm tính <small>({count} sản phẩm)</small>
-            </span>
-            <strong>{money(totals.subtotal)}</strong>
+            {note && (
+              <button
+                type="button"
+                className="order-note-clear"
+                title="Xóa ghi chú"
+                aria-label="Xóa ghi chú"
+                onClick={() => setNote("")}
+              >
+                <X size={12} />
+              </button>
+            )}
           </div>
-          <div className="summary-row">
-            <label htmlFor="discount-field">Giảm giá</label>
-            <div className="discount-input-wrapper">
-              <input
-                id="discount-field"
-                type="number"
-                min="0"
-                max={totals.subtotal}
-                step="1000"
-                value={discount || ""}
-                placeholder="0"
-                onChange={(event) =>
-                  setDiscount(
-                    Math.min(
-                      totals.subtotal,
-                      Math.max(0, Number(event.target.value)),
-                    ),
-                  )
-                }
-                onBlur={() => setDiscount(totals.discount)}
-              />
-              <span>₫</span>
+          <div className="summary-breakdown">
+            <div className="summary-row">
+              <span>
+                Tạm tính <small>({count} sản phẩm)</small>
+              </span>
+              <strong>{money(totals.subtotal)}</strong>
+            </div>
+            <div className="summary-row">
+              <label htmlFor="discount-field">Giảm giá</label>
+              <div className="discount-input-wrapper">
+                <input
+                  id="discount-field"
+                  type="number"
+                  min="0"
+                  max={totals.subtotal}
+                  step="1000"
+                  value={discount || ""}
+                  placeholder="0"
+                  onChange={(event) =>
+                    setDiscount(
+                      Math.min(
+                        totals.subtotal,
+                        Math.max(0, Number(event.target.value)),
+                      ),
+                    )
+                  }
+                  onBlur={() => setDiscount(totals.discount)}
+                />
+                <span>₫</span>
+              </div>
             </div>
           </div>
-          <div className="summary-total">
-            <span>Tổng thanh toán</span>
-            <strong>{money(totals.total)}</strong>
+          <div className="summary-total-card">
+            <div className="summary-total-label">
+              <span>Tổng thanh toán</span>
+              <small>Đã gồm thuế GTGT</small>
+            </div>
+            <strong className="summary-total-amount">{money(totals.total)}</strong>
           </div>
           <button
             ref={checkoutButton}
@@ -477,11 +505,10 @@ export function SalesPage({
             disabled={!lines.length}
             onClick={() => dialog.current?.showModal()}
           >
-            <CreditCard size={19} />
-            Thanh toán
-            <ArrowRight size={19} />
+            <CreditCard size={18} />
+            <span>Thanh toán {lines.length > 0 ? `(${money(totals.total)})` : ""}</span>
+            <ArrowRight size={18} />
           </button>
-
         </div>
       </aside>
       <div className="floating-notice" role="status">
