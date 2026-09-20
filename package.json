@@ -4,8 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "postinstall": "cd web && npm install && npm run build",
-    "build": "cd web && npm install && npm run build",
-    "start": "node server.js"
+    "postinstall": "npm --prefix frontend install && npm --prefix frontend run build",
+    "build": "npm --prefix frontend install && npm --prefix frontend run build",
+    "build:backend": "dotnet build backend/Goan.sln",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:backend": "dotnet run --project backend/Goan.Api",
+    "test": "npm --prefix frontend test && dotnet test backend/Goan.sln",
+    "start": "node frontend/server.js"
   }
 }

@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: goan-web
+    name: goan-frontend
     env: node
     plan: free
     buildCommand: yarn
