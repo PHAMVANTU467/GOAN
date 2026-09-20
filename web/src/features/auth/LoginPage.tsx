@@ -98,7 +98,7 @@ export function LoginPage({ authService }: { authService: AuthService }) {
             aria-busy={pending}
           >
             <div className="field-group">
-              <label htmlFor="identifier"> Tên đăng nhập</label>
+              <label htmlFor="identifier">Email hoặc số điện thoại</label>
               <div
                 className={`input-wrap ${errors.identifier ? "invalid" : ""}`}
               >
@@ -111,7 +111,7 @@ export function LoginPage({ authService }: { authService: AuthService }) {
                   autoComplete="username"
                   autoCapitalize="none"
                   spellCheck={false}
-                  placeholder=" Nhập số điện thoại"
+                  placeholder="Nhập email hoặc số điện thoại"
                   value={identifier}
                   onBlur={() => validateField("identifier")}
                   onChange={(event) => {

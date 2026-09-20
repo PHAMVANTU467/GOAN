@@ -28,6 +28,29 @@ describe("LoginValidator", () => {
       LoginValidator.validate({ identifier: "owner@goan.vn", password: "abc" }),
     ).toEqual({});
   });
+
+  describe("email identifier", () => {
+    it.each([
+      "owner@goan.vn",
+      "owner.shop@goan.vn",
+      "owner+tanphu@goan.vn",
+      " OWNER@GOAN.VN ",
+    ])("accepts valid email %s", (identifier) => {
+      expect(
+        LoginValidator.validate({ identifier, password: "password" }),
+      ).toEqual({});
+    });
+
+    it.each(["owner@", "owner@goan", "owner goan.vn", "@goan.vn"])(
+      "rejects invalid email %s",
+      (identifier) => {
+        expect(
+          LoginValidator.validate({ identifier, password: "password" })
+            .identifier,
+        ).toBe("Email hoặc số điện thoại chưa hợp lệ.");
+      },
+    );
+  });
 });
 
 it("never pretends authentication succeeded without a backend", async () => {
