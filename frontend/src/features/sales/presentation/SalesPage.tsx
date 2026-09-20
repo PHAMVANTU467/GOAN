@@ -17,6 +17,14 @@ import { calculateTotals, money, normalizeSearch } from "../application/Cart";
 import type { CartLine, Catalog, Product } from "../domain/SalesModels";
 import { CategoryNavigation } from "./CategoryNavigation";
 
+interface OrderTab {
+  id: string;
+  lines: CartLine[];
+  customer: string;
+  discount: number;
+  note: string;
+}
+
 export function SalesPage({
   catalogService,
 }: {
@@ -27,15 +35,82 @@ export function SalesPage({
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("all");
   const [sort, setSort] = useState("default");
-  const [lines, setLines] = useState<CartLine[]>([]);
-  const [customer, setCustomer] = useState("");
-  const [discount, setDiscount] = useState(0);
-  const [note, setNote] = useState("");
-  const [orderType, setOrderType] = useState("takeaway");
+  const [orders, setOrders] = useState<OrderTab[]>([
+    { id: "HD0001", lines: [], customer: "", discount: 0, note: "" },
+  ]);
+  const [activeOrderId, setActiveOrderId] = useState("HD0001");
+  const [orderSeq, setOrderSeq] = useState(1);
   const [notice, setNotice] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash");
   const dialog = useRef<HTMLDialogElement>(null);
   const checkoutButton = useRef<HTMLButtonElement>(null);
+
+  const activeOrder =
+    orders.find((o) => o.id === activeOrderId) ?? orders[0];
+  const lines = activeOrder.lines;
+  const customer = activeOrder.customer;
+  const discount = activeOrder.discount;
+  const note = activeOrder.note;
+
+  function updateActiveOrder(updater: (order: OrderTab) => Partial<OrderTab>) {
+    setOrders((current) =>
+      current.map((order) =>
+        order.id === activeOrder.id ? { ...order, ...updater(order) } : order,
+      ),
+    );
+  }
+
+  function setLines(updater: CartLine[] | ((currentLines: CartLine[]) => CartLine[])) {
+    updateActiveOrder((order) => ({
+      lines: typeof updater === "function" ? updater(order.lines) : updater,
+    }));
+  }
+
+  function setCustomer(newCustomer: string) {
+    updateActiveOrder(() => ({ customer: newCustomer }));
+  }
+
+  function setDiscount(newDiscount: number) {
+    updateActiveOrder(() => ({ discount: newDiscount }));
+  }
+
+  function setNote(newNote: string) {
+    updateActiveOrder(() => ({ note: newNote }));
+  }
+
+  function handleAddNewOrder() {
+    const nextSeq = orderSeq + 1;
+    setOrderSeq(nextSeq);
+    const newId = `HD${String(nextSeq).padStart(4, "0")}`;
+    const newOrder: OrderTab = {
+      id: newId,
+      lines: [],
+      customer: "",
+      discount: 0,
+      note: "",
+    };
+    setOrders((current) => [...current, newOrder]);
+    setActiveOrderId(newId);
+    setNotice(`Đã mở đơn hàng mới #${newId}`);
+  }
+
+  function handleCloseOrder(orderIdToClose: string, event?: React.MouseEvent) {
+    event?.stopPropagation();
+    if (orders.length <= 1) {
+      setLines([]);
+      setDiscount(0);
+      setNote("");
+      setCustomer("");
+      setNotice("Đã làm mới đơn hàng hiện tại.");
+      return;
+    }
+    const remaining = orders.filter((o) => o.id !== orderIdToClose);
+    setOrders(remaining);
+    if (activeOrderId === orderIdToClose) {
+      setActiveOrderId(remaining[remaining.length - 1].id);
+    }
+    setNotice(`Đã hủy đơn hàng #${orderIdToClose}`);
+  }
   useEffect(() => {
     let cancelled = false;
     catalogService
@@ -216,45 +291,53 @@ export function SalesPage({
           )}
         </div>
       </section>
-      <aside className="pos-order" aria-label="Đơn hàng hiện tại">
-        <header className="pos-order-heading">
-          <div>
-            <ShoppingBag size={21} />
-            <div className="pos-order-title-group">
-              <h2>Đơn hàng hiện tại</h2>
-            </div>
+      <aside className="pos-order" aria-label="Đơn hàng">
+        <div className="pos-order-tabs-bar" role="tablist" aria-label="Danh sách đơn hàng">
+          <div className="pos-order-tabs-list">
+            {orders.map((order) => {
+              const isActive = order.id === activeOrder.id;
+              const itemCount = order.lines.reduce(
+                (sum, line) => sum + line.quantity,
+                0,
+              );
+              return (
+                <div
+                  key={order.id}
+                  role="tab"
+                  aria-selected={isActive}
+                  className={`pos-order-tab-box ${isActive ? "active" : ""}`}
+                  onClick={() => setActiveOrderId(order.id)}
+                >
+                  <div className="pos-order-tab-header">
+                    <span className="pos-order-tab-label">Đơn</span>
+                    <button
+                      type="button"
+                      className="pos-order-tab-cancel"
+                      title={`Hủy đơn #${order.id}`}
+                      aria-label={`Hủy đơn #${order.id}`}
+                      onClick={(e) => handleCloseOrder(order.id, e)}
+                    >
+                      <X size={11} />
+                    </button>
+                  </div>
+                  <div className="pos-order-tab-body">
+                    <span className="pos-order-tab-code">#{order.id}</span>
+                    {itemCount > 0 && (
+                      <span className="pos-order-tab-badge">{itemCount}</span>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
-          <div className="pos-order-meta">
-            {lines.length > 0 && (
-              <button
-                className="pos-order-clear-btn"
-                title="Xóa đơn hiện tại"
-                aria-label="Xóa đơn hiện tại"
-                onClick={() => {
-                  setLines([]);
-                  setDiscount(0);
-                  setNote("");
-                  setNotice("Đã xóa sản phẩm khỏi đơn hiện tại.");
-                }}
-              >
-                <X size={13} />
-              </button>
-            )}
-            <span className="pos-order-id">#HD0001</span>
-          </div>
-        </header>
-        <div className="pos-order-type">
           <button
-            className={orderType === "takeaway" ? "selected" : ""}
-            onClick={() => setOrderType("takeaway")}
+            type="button"
+            className="pos-order-new-btn"
+            title="Thêm đơn hàng mới"
+            aria-label="Thêm đơn hàng mới"
+            onClick={handleAddNewOrder}
           >
-            Mang đi
-          </button>
-          <button
-            className={orderType === "here" ? "selected" : ""}
-            onClick={() => setOrderType("here")}
-          >
-            Tại cửa hàng
+            <Plus size={18} />
           </button>
         </div>
         <label className="pos-customer">
@@ -420,8 +503,7 @@ export function SalesPage({
           {customer
             ? catalog?.customers.find((item) => item.id === customer)?.name
             : "Khách lẻ"}{" "}
-          · {orderType === "here" ? "Tại cửa hàng" : "Mang đi"} · {count} sản
-          phẩm
+          · #{activeOrder.id} · {count} sản phẩm
         </p>
         <div className="pos-payment-total">{money(totals.total)}</div>
         <div className="pos-payment-methods">
