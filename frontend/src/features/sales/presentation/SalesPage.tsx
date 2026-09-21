@@ -475,7 +475,6 @@ export function SalesPage({
           <div className="summary-total-card">
             <div className="summary-total-label">
               <span>Tổng thanh toán</span>
-              <small>Đã gồm thuế GTGT</small>
             </div>
             <strong className="summary-total-amount">{money(totals.total)}</strong>
           </div>
@@ -486,7 +485,7 @@ export function SalesPage({
             onClick={() => dialog.current?.showModal()}
           >
             <CreditCard size={18} />
-            <span>Thanh toán {lines.length > 0 ? `(${money(totals.total)})` : ""}</span>
+            <span>Thanh toán</span>
             <ArrowRight size={18} />
           </button>
         </div>

@@ -958,14 +958,20 @@
   font-size: 13px;
   color: #64748b;
 }
-.summary-row strong {
+.summary-row > span,
+.summary-row label {
+  font-weight: 700;
   color: #1e293b;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
 }
 .summary-row small {
-  font-size: 11.5px;
-  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+}
+.summary-row strong {
+  color: #1e293b;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }
 .discount-input-wrapper {
   display: flex;
@@ -982,7 +988,7 @@
   background: white;
   color: #1e293b;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   outline: none;
   transition: border-color 0.15s;
 }
@@ -990,7 +996,7 @@
   border-color: #0088d7;
 }
 .discount-input-wrapper span {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 13px;
   color: #64748b;
 }
@@ -1010,15 +1016,11 @@
   gap: 1px;
 }
 .summary-total-label span {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 13.5px;
+  font-weight: 700;
   color: #0369a1;
   text-transform: uppercase;
   letter-spacing: 0.3px;
-}
-.summary-total-label small {
-  font-size: 10.5px;
-  color: #64748b;
 }
 .summary-total-amount {
   font-size: 22px;
@@ -1037,13 +1039,16 @@
   background: #0088d7;
   color: white;
   border-radius: 10px;
-  font-size: 14.5px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
   border: 0;
   cursor: pointer;
   box-shadow: 0 3px 10px rgba(0, 136, 215, 0.28);
   transition: all 0.15s ease;
   box-sizing: border-box;
+}
+.btn-checkout span {
+  font-weight: 700;
 }
 .btn-checkout:hover:enabled {
   background: #0077be;
