@@ -9,6 +9,7 @@ import {
   Plus,
   Search,
   ShoppingBag,
+  UserPlus,
   UserRound,
   X,
 } from "lucide-react";
@@ -41,15 +42,43 @@ export function SalesPage({
   const [orderSeq, setOrderSeq] = useState(1);
   const [notice, setNotice] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash");
+  const [customerDropdownOpen, setCustomerDropdownOpen] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
   const checkoutButton = useRef<HTMLButtonElement>(null);
+  const customerSelectRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        customerSelectRef.current &&
+        !customerSelectRef.current.contains(event.target as Node)
+      ) {
+        setCustomerDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const activeOrder =
     orders.find((o) => o.id === activeOrderId) ?? orders[0];
   const lines = activeOrder.lines;
   const customer = activeOrder.customer;
+  const currentCustomer = catalog?.customers.find((item) => item.id === customer);
   const discount = activeOrder.discount;
   const note = activeOrder.note;
+
+  function handleCustomerCardClick() {
+    if (currentCustomer) {
+      setNotice(
+        `Khách hàng: ${currentCustomer.name} · SĐT: ${currentCustomer.phone} (Tính năng chi tiết đang phát triển)`
+      );
+    } else {
+      setCustomerDropdownOpen((prev) => !prev);
+    }
+  }
 
   function updateActiveOrder(updater: (order: OrderTab) => Partial<OrderTab>) {
     setOrders((current) =>
@@ -321,27 +350,131 @@ export function SalesPage({
             <Plus size={18} />
           </button>
         </div>
-        <label className="customer-select">
-          <span className="customer-icon">
-            <UserRound size={18} />
-          </span>
-          <div className="customer-info">
-            <small>Khách hàng</small>
-            <select
-              aria-label="Chọn khách hàng"
-              value={customer}
-              onChange={(event) => setCustomer(event.target.value)}
-            >
-              <option value="">Khách lẻ</option>
-              {catalog?.customers.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.name} · {item.phone}
-                </option>
-              ))}
-            </select>
+        <div className="customer-select-container" ref={customerSelectRef}>
+          <div
+            className={`customer-select-bar ${currentCustomer ? "has-customer" : ""}`}
+            onClick={handleCustomerCardClick}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                handleCustomerCardClick();
+              }
+            }}
+            aria-label={
+              currentCustomer
+                ? `Khách hàng: ${currentCustomer.name} - ${currentCustomer.phone}`
+                : "Chọn khách hàng (Mặc định: Khách lẻ)"
+            }
+          >
+            <span className="customer-icon">
+              <UserRound size={18} />
+            </span>
+            <div className="customer-info">
+              <small>Khách hàng</small>
+              <div className="customer-name-wrapper">
+                {currentCustomer ? (
+                  <div className="customer-name-selected">
+                    <span className="customer-name-text">{currentCustomer.name}</span>
+                    <span className="customer-phone-pill">{currentCustomer.phone}</span>
+                  </div>
+                ) : (
+                  <span className="customer-name-default">Khách lẻ</span>
+                )}
+              </div>
+            </div>
+            <div className="customer-actions">
+              {currentCustomer ? (
+                <button
+                  type="button"
+                  className="customer-clear-btn"
+                  title="Bỏ chọn (chuyển về Khách lẻ)"
+                  aria-label="Bỏ chọn khách hàng"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCustomer("");
+                    setCustomerDropdownOpen(false);
+                    setNotice("Đã chuyển về Khách lẻ");
+                  }}
+                >
+                  <X size={14} />
+                </button>
+              ) : (
+                <span className={`customer-chevron ${customerDropdownOpen ? "open" : ""}`}>
+                  <ChevronDown size={16} />
+                </span>
+              )}
+              <button
+                type="button"
+                className="customer-add-btn"
+                title="Thêm khách hàng mới"
+                aria-label="Thêm khách hàng mới"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCustomerDropdownOpen(false);
+                  setNotice("Chức năng thêm khách hàng mới đang được phát triển.");
+                }}
+              >
+                <UserPlus size={16} />
+              </button>
+            </div>
           </div>
-          <ChevronDown size={16} />
-        </label>
+
+          {customerDropdownOpen && !currentCustomer && (
+            <div className="customer-dropdown-menu" role="listbox">
+              <div className="customer-dropdown-header">
+                <span>Chọn khách hàng</span>
+                <span className="customer-count">{(catalog?.customers.length ?? 0) + 1}</span>
+              </div>
+              <div className="customer-dropdown-list">
+                <button
+                  type="button"
+                  role="option"
+                  aria-selected={!customer}
+                  className="customer-dropdown-item active"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCustomer("");
+                    setCustomerDropdownOpen(false);
+                  }}
+                >
+                  <div className="customer-item-avatar default">
+                    <UserRound size={15} />
+                  </div>
+                  <div className="customer-item-info">
+                    <span className="customer-item-name">Khách lẻ</span>
+                    <span className="customer-item-desc">Mặc định</span>
+                  </div>
+                  <Check size={16} className="customer-item-check" />
+                </button>
+                {catalog?.customers.map((c) => (
+                  <button
+                    key={c.id}
+                    type="button"
+                    role="option"
+                    aria-selected={false}
+                    className="customer-dropdown-item"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCustomer(c.id);
+                      setCustomerDropdownOpen(false);
+                      setNotice(`Đã chọn: ${c.name}`);
+                    }}
+                  >
+                    <div className="customer-item-avatar">
+                      <UserRound size={15} />
+                    </div>
+                    <div className="customer-item-info">
+                      <span className="customer-item-name">{c.name}</span>
+                      <span className="customer-item-phone">{c.phone}</span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
         <div className="order-list-heading">
           <span>
             Danh sách món <b>{count}</b>
