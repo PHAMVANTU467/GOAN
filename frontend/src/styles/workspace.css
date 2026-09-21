@@ -330,21 +330,23 @@
   flex-direction: column;
   text-align: left;
   background: white;
-  border: 1px solid #e0e8ef !important;
+  border: 1px solid #b8c7d9 !important;
   border-radius: 12px;
   overflow: hidden;
   padding: 0;
   color: var(--workspace-ink);
-  transition: border-color .15s, box-shadow .15s;
+  box-shadow: 0 3px 8px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.04);
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
   box-sizing: border-box;
 }
 .product-card:hover {
-  border-color: #8fbfdf !important;
-  box-shadow: 0 3px 12px #1639570c;
+  transform: translateY(-2px);
+  border-color: #0284c7 !important;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12), 0 2px 4px rgba(15, 23, 42, 0.06);
 }
 .product-card.in-cart {
-  border-color: #087fe7 !important;
-  box-shadow: 0 0 0 1px #087fe7;
+  border-color: #0284c7 !important;
+  box-shadow: 0 3px 10px rgba(2, 132, 199, 0.22), 0 0 0 1px #0284c7;
   background: #f4faff;
 }
 .product-image {
