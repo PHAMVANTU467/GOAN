@@ -36,7 +36,10 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
 
-await DevelopmentAccountSeeder.SeedAsync(app.Services);
+if (app.Environment.IsDevelopment())
+{
+    await DevelopmentAccountSeeder.SeedAsync(app.Services);
+}
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseCors("Frontend");

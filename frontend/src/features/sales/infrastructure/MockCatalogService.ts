@@ -1,4 +1,5 @@
 import type { CatalogService } from "../application/CatalogService";
+import type { CustomerRecord } from "../../customers/domain/Customer";
 import type {
   Catalog,
   Product,
@@ -6,97 +7,87 @@ import type {
   Customer,
   StoreInfo,
   CuaHang,
-  DanhMucSP,
+  DanhMuc,
   DonViTinh,
-  NhaCC,
-  Sanpham,
-  BienTheSP,
-  Khachhang,
-  NhanVien,
+  NhaCungCap,
+  SanPham,
+  BienTheSanPham,
+  NguoiDung,
 } from "../domain/SalesModels";
 import db from "./catalog.json";
+import { SAMPLE_CUSTOMERS } from "../../customers/infrastructure/customerFixtures";
 
 export class MockCatalogService implements CatalogService {
-  // Lấy dữ liệu dạng Catalog cho giao diện bán hàng
   async getCatalog(): Promise<Catalog> {
-    const donViMap = new Map(
-      (db.DonViTinh as DonViTinh[]).map((d) => [d.MaDonVi, d.TenDonVi]),
+    const unitsById = new Map(
+      (db.DonViTinh as DonViTinh[]).map((unit) => [unit.MaDonVi, unit]),
     );
-    const bienTheMap = new Map(
-      (db.BienTheSP as BienTheSP[]).map((b) => [b.sp, b]),
+    const variantByProductId = new Map(
+      (db.BienTheSanPham as BienTheSanPham[]).map((variant) => [variant.MaSanPham, variant]),
     );
 
-    const products: Product[] = (db.Sanpham as Sanpham[]).map((sp) => {
-      const bienThe = bienTheMap.get(sp.MaSP);
-      const unitName = donViMap.get(sp.dv) ?? "Ly";
+    const products: Product[] = (db.SanPham as SanPham[]).map((product, index) => {
+      const variant = variantByProductId.get(product.MaSanPham);
       return {
-        id: bienThe?.MaBienThe ?? sp.MaSP,
-        sku: sp.MaSP,
-        name: sp.TenSP,
-        categoryId: sp.dm,
-        price: sp.GiaBan,
-        image: sp.HinhAnh ?? "/images/products/product-01.jpg",
-        unit: unitName,
-        stock: bienThe?.TonKho ?? 50,
+        id: variant?.MaBienThe ?? product.MaSanPham,
+        sku: variant?.SKU ?? product.MaVach,
+        name: product.TenSanPham,
+        categoryId: product.MaDanhMuc,
+        price: variant?.GiaBan ?? product.GiaBan,
+        image: `/images/products/product-${String(index + 1).padStart(2, "0")}.jpg`,
+        unit: unitsById.get(product.MaDonVi)?.KyHieu ?? "",
       };
     });
 
-    const categories: Category[] = (db.DanhMucSP as DanhMucSP[]).map((c) => ({
-      id: c.MaLoai,
-      name: c.TenLoai,
+    const categories: Category[] = (db.DanhMuc as DanhMuc[]).map((category) => ({
+      id: category.MaDanhMuc,
+      name: category.TenDanhMuc,
     }));
 
-    const customers: Customer[] = (db.Khachhang as Khachhang[]).map((k) => ({
-      id: k.MaKH,
-      name: k.HoTenKH,
-      phone: k.SDT,
+    const customers: Customer[] = SAMPLE_CUSTOMERS.map((customer: CustomerRecord) => ({
+      id: customer.MaKhachHang,
+      storeId: customer.MaCuaHang,
+      name: customer.HoTen,
+      phone: customer.SoDienThoai,
+      memberTier: customer.HangThanhVien,
+      status: customer.TrangThai,
     }));
 
-    const store: StoreInfo = {
-      id: db.CuaHang.MaCuaHang,
-      name: db.CuaHang.TenCuaHang,
-      phone: db.CuaHang.SDT,
-      address: db.CuaHang.diaChi?.DiaChiChiTiet,
-    };
+    const storeRow = db.CuaHang as CuaHang;
+    const store: StoreInfo = { id: storeRow.MaCuaHang, name: storeRow.TenCuaHang };
 
-    return {
-      store,
-      products,
-      categories,
-      customers,
-    };
+    return { store, products, categories, customers };
   }
 
-  // Cung cấp các hàm truy xuất trực tiếp các bảng database mẫu
   getCuaHang(): CuaHang {
     return db.CuaHang as CuaHang;
   }
 
-  getDanhMucSP(): DanhMucSP[] {
-    return db.DanhMucSP as DanhMucSP[];
+  getDanhMuc(): DanhMuc[] {
+    return db.DanhMuc as DanhMuc[];
   }
 
   getDonViTinh(): DonViTinh[] {
     return db.DonViTinh as DonViTinh[];
   }
 
-  getNhaCC(): NhaCC[] {
-    return db.NhaCC as NhaCC[];
+  getNhaCungCap(): NhaCungCap[] {
+    return db.NhaCungCap as NhaCungCap[];
   }
 
-  getSanpham(): Sanpham[] {
-    return db.Sanpham as Sanpham[];
+  getSanPham(): SanPham[] {
+    return db.SanPham as SanPham[];
   }
 
-  getBienTheSP(): BienTheSP[] {
-    return db.BienTheSP as BienTheSP[];
+  getBienTheSanPham(): BienTheSanPham[] {
+    return db.BienTheSanPham as BienTheSanPham[];
   }
 
-  getKhachhang(): Khachhang[] {
-    return db.Khachhang as Khachhang[];
+  getKhachHang(): CustomerRecord[] {
+    return db.KhachHang as CustomerRecord[];
   }
 
-  getNhanVien(): NhanVien[] {
-    return db.NhanVien as NhanVien[];
+  getNguoiDung(): NguoiDung[] {
+    return db.NguoiDung as NguoiDung[];
   }
 }

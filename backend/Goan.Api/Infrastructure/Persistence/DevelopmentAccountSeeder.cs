@@ -10,15 +10,16 @@ public static class DevelopmentAccountSeeder
         using var scope = services.CreateScope();
         var repository = scope.ServiceProvider.GetRequiredService<IUserRepository>();
         var passwords = scope.ServiceProvider.GetRequiredService<IPasswordService>();
-        var account = new UserAccount
+        var admin = new UserAccount
         {
-            FullName = "Quản trị GOAN",
+            FullName = "GOAN Administrator",
             Email = "admin@goan.local",
             Phone = "0900000000",
             Username = "admin",
             PasswordHash = string.Empty,
         };
-        account.PasswordHash = passwords.Hash(account, "123456");
-        await repository.TryAddAsync(account, CancellationToken.None);
+
+        admin.PasswordHash = passwords.Hash(admin, "123456");
+        await repository.TryAddAsync(admin, CancellationToken.None);
     }
 }
