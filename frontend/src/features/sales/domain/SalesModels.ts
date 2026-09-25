@@ -1,98 +1,103 @@
-// Các thực thể bảng dữ liệu khớp với Sơ đồ phân tích / Database schema
+// Database row models aligned with the supplied schema.
 export interface CuaHang {
   MaCuaHang: string;
   TenCuaHang: string;
-  SDT: string;
-  diaChi?: {
-    MaDiaChi: string;
-    DiaChiChiTiet: string;
-    PhuongXa: string;
-    TinhThanhPho: string;
-    QuocGia: string;
-  };
-  linhVuc?: {
-    MaLinhVuc: string;
-    TenLinhVuc: string;
-    MoTa: string;
-    TrangThai: string;
-  };
+  MaSoThue: string;
+  TrangThai: string;
 }
 
-export interface DanhMucSP {
-  MaLoai: string;
-  TenLoai: string;
+export interface DanhMuc {
+  MaDanhMuc: string;
+  MaCuaHang: string;
+  TenDanhMuc: string;
+  MaDanhMucCha: string | null;
 }
 
 export interface DonViTinh {
   MaDonVi: string;
+  MaCuaHang: string;
   TenDonVi: string;
+  KyHieu: string;
 }
 
-export interface NhaCC {
+export interface NhaCungCap {
   MaNCC: string;
+  MaCuaHang: string;
   TenNCC: string;
-  SDT: string;
-  Email: string;
+  SoDienThoai: string;
   DiaChi: string;
+  TrangThai: string;
 }
 
-export interface Sanpham {
-  MaSP: string;
-  TenSP: string;
+export interface SanPham {
+  MaSanPham: string;
+  MaDanhMuc: string;
+  MaDonVi: string;
+  TenSanPham: string;
+  MaVach: string;
   GiaVon: number;
   GiaBan: number;
-  dm: string; // MaLoai
-  ncc: string; // MaNCC
-  dv: string; // MaDonVi
-  HinhAnh?: string;
-}
-
-export interface BienTheSP {
-  MaBienThe: string;
-  MoTa: string;
-  TonKho: number;
-  MucTonToiThieu: number;
-  sp: string; // MaSP
-}
-
-export interface Khachhang {
-  MaKH: string;
-  HoTenKH: string;
-  SDT: string;
-  GhiChu?: string;
-}
-
-export interface NhanVien {
-  MaNV: string;
-  HoTenNV: string;
-  SDT: string;
-  Email: string;
-  DiaChi: string;
-  ChucVu: string;
-  LoaiNhanVien: string;
-  NgayTao: string;
-}
-
-export interface Hoadon {
-  MaHD: string;
-  ThongTinDonHang: string;
-  ThoiGianTao: string;
   TrangThai: string;
-  TongTien: number;
-  kh: string; // MaKH
-  nv: string; // MaNV
 }
 
-export interface CTHD {
-  MaCTHD: string;
-  hd: string; // MaHD
-  bt: string; // MaBienThe
+export interface BienTheSanPham {
+  MaBienThe: string;
+  MaSanPham: string;
+  SKU: string;
+  ThuocTinh: string;
+  MaVach: string;
+  GiaBan: number;
+}
+
+export interface NguoiDung {
+  MaNguoiDung: string;
+  HoTen: string;
+  Email: string;
+  MatKhauHash: string;
+  TrangThai: string;
+}
+
+export interface CaLam {
+  MaCa: string;
+  MaChiNhanh: string;
+  MaNguoiDung: string;
+  ThoiGianMo: string;
+  ThoiGianDong: string | null;
+  TienDauCa: number;
+  TrangThai: string;
+}
+
+export interface HoaDon {
+  MaHoaDon: string;
+  MaCa: string;
+  MaKhachHang: string | null;
+  MaKho: string;
+  NgayLap: string;
+  TongTien: number;
+  GiamGia: number;
+  TrangThai: string;
+}
+
+export interface ChiTietHoaDon {
+  MaChiTiet: string;
+  MaHoaDon: string;
+  MaSanPham: string;
   SoLuong: number;
   DonGia: number;
+  GiamGia: number;
   ThanhTien: number;
 }
 
-// Cấu trúc View Model phục vụ giao diện bán hàng
+export interface ThanhToan {
+  MaThanhToan: string;
+  MaHoaDon: string;
+  PhuongThuc: string;
+  SoTien: number;
+  MaThamChieu: string;
+  TrangThai: string;
+}
+
+// View models used by the sales UI; these are not database tables.
 export interface Product {
   id: string;
   sku: string;
@@ -112,16 +117,16 @@ export interface Category {
 
 export interface Customer {
   id: string;
+  storeId: string;
   name: string;
   phone: string;
+  memberTier: string;
+  status: string;
 }
 
 export interface StoreInfo {
   id: string;
   name: string;
-  branch?: string;
-  address?: string;
-  phone?: string;
 }
 
 export interface Catalog {

@@ -16,6 +16,10 @@ import type { CatalogService } from "../features/sales/application/CatalogServic
 import type { AccountProfile } from "../features/auth/domain/AuthModels";
 import type { StoreInfo } from "../features/sales/domain/SalesModels";
 import { SalesPage } from "../features/sales/presentation/SalesPage";
+import { CustomerManagementPage } from "../features/customers/presentation/CustomerManagementPage";
+import type { CustomerService } from "../features/customers/application/CustomerService";
+import type { InvoiceService } from "../features/invoices/application/InvoiceService";
+import { InvoiceManagementPage } from "../features/invoices/presentation/InvoiceManagementPage";
 import "../styles/workspace.css";
 
 export const workspaceNavigation = [
@@ -33,12 +37,16 @@ export function Workspace({
   path,
   navigate,
   catalogService,
+  customerService,
+  invoiceService,
   account,
   onSignOut,
 }: {
   path: string;
   navigate: (path: string) => void;
   catalogService: CatalogService;
+  customerService: CustomerService;
+  invoiceService: InvoiceService;
   account: AccountProfile | null;
   onSignOut: () => void;
 }) {
@@ -121,9 +129,13 @@ export function Workspace({
           </div>
         </header>
         <div hidden={path !== "/sales"} className="sales-container">
-          <SalesPage catalogService={catalogService} />
+          <SalesPage catalogService={catalogService} invoiceService={invoiceService} />
         </div>
-        {path !== "/sales" && (
+        {path === "/customers" ? (
+          <CustomerManagementPage customerService={customerService} invoiceService={invoiceService} />
+        ) : path === "/invoices" ? (
+          <InvoiceManagementPage invoiceService={invoiceService} customerService={customerService} />
+        ) : path !== "/sales" && (
           <main className="placeholder-page">
             <span className="section-kicker">GOAN WORKSPACE</span>
             <h1>{active.label}</h1>

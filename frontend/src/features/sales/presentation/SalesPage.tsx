@@ -17,6 +17,11 @@ import type { CatalogService } from "../application/CatalogService";
 import { calculateTotals, money, normalizeSearch } from "../application/Cart";
 import type { CartLine, Catalog, Product } from "../domain/SalesModels";
 import { CategoryNavigation } from "./CategoryNavigation";
+import { AddCustomerModal, type NewCustomerFormData } from "../../customers/presentation/AddCustomerModal";
+import { CustomerDetailModal } from "../../customers/presentation/CustomerDetailModal";
+import type { InvoiceService } from "../../invoices/application/InvoiceService";
+import type { InvoiceRecord } from "../../invoices/domain/InvoiceRecord";
+import { formatCustomerCode } from "../../customers/presentation/DisplayCodes";
 
 interface OrderTab {
   id: string;
@@ -28,21 +33,26 @@ interface OrderTab {
 
 export function SalesPage({
   catalogService,
+  invoiceService,
 }: {
   catalogService: CatalogService;
+  invoiceService: InvoiceService;
 }) {
   const [catalog, setCatalog] = useState<Catalog | null>(null);
   const [error, setError] = useState(false);
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("all");
   const [orders, setOrders] = useState<OrderTab[]>([
-    { id: "HD0001", lines: [], customer: "", discount: 0, note: "" },
+    { id: "HD000001", lines: [], customer: "", discount: 0, note: "" },
   ]);
-  const [activeOrderId, setActiveOrderId] = useState("HD0001");
+  const [activeOrderId, setActiveOrderId] = useState("HD000001");
   const [orderSeq, setOrderSeq] = useState(1);
   const [notice, setNotice] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash");
   const [customerDropdownOpen, setCustomerDropdownOpen] = useState(false);
+  const [addCustomerOpen, setAddCustomerOpen] = useState(false);
+  const [customerDetailOpen, setCustomerDetailOpen] = useState(false);
+  const [customerInvoices, setCustomerInvoices] = useState<InvoiceRecord[]>([]);
   const dialog = useRef<HTMLDialogElement>(null);
   const checkoutButton = useRef<HTMLButtonElement>(null);
   const customerSelectRef = useRef<HTMLDivElement>(null);
@@ -67,14 +77,14 @@ export function SalesPage({
   const lines = activeOrder.lines;
   const customer = activeOrder.customer;
   const currentCustomer = catalog?.customers.find((item) => item.id === customer);
+  const currentCustomerIndex = catalog?.customers.findIndex((item) => item.id === customer) ?? -1;
+  const currentCustomerCode = currentCustomerIndex >= 0 ? formatCustomerCode(currentCustomerIndex + 1) : "";
   const discount = activeOrder.discount;
   const note = activeOrder.note;
 
   function handleCustomerCardClick() {
     if (currentCustomer) {
-      setNotice(
-        `Khách hàng: ${currentCustomer.name} · SĐT: ${currentCustomer.phone} (Tính năng chi tiết đang phát triển)`
-      );
+      setCustomerDetailOpen(true);
     } else {
       setCustomerDropdownOpen((prev) => !prev);
     }
@@ -109,7 +119,7 @@ export function SalesPage({
   function handleAddNewOrder() {
     const nextSeq = orderSeq + 1;
     setOrderSeq(nextSeq);
-    const newId = `HD${String(nextSeq).padStart(4, "0")}`;
+    const newId = `HD${String(nextSeq).padStart(6, "0")}`;
     const newOrder: OrderTab = {
       id: newId,
       lines: [],
@@ -153,6 +163,11 @@ export function SalesPage({
       cancelled = true;
     };
   }, [catalogService]);
+  useEffect(() => {
+    let cancelled = false;
+    invoiceService.list().then((rows) => { if (!cancelled) setCustomerInvoices(rows); }).catch(() => {});
+    return () => { cancelled = true; };
+  }, [invoiceService]);
   useEffect(() => {
     if (!notice) return;
     const timer = window.setTimeout(() => setNotice(""), 4000);
@@ -377,6 +392,7 @@ export function SalesPage({
                 {currentCustomer ? (
                   <div className="customer-name-selected">
                     <span className="customer-name-text">{currentCustomer.name}</span>
+                    <span className="customer-code-pill">{currentCustomerCode}</span>
                     <span className="customer-phone-pill">{currentCustomer.phone}</span>
                   </div>
                 ) : (
@@ -408,12 +424,13 @@ export function SalesPage({
               <button
                 type="button"
                 className="customer-add-btn"
+                disabled={!catalog}
                 title="Thêm khách hàng mới"
                 aria-label="Thêm khách hàng mới"
                 onClick={(e) => {
                   e.stopPropagation();
                   setCustomerDropdownOpen(false);
-                  setNotice("Chức năng thêm khách hàng mới đang được phát triển.");
+                  setAddCustomerOpen(true);
                 }}
               >
                 <UserPlus size={16} />
@@ -467,6 +484,7 @@ export function SalesPage({
                     </div>
                     <div className="customer-item-info">
                       <span className="customer-item-name">{c.name}</span>
+                      <span className="customer-item-desc">{formatCustomerCode((catalog?.customers.findIndex((item) => item.id === c.id) ?? 0) + 1)}</span>
                       <span className="customer-item-phone">{c.phone}</span>
                     </div>
                   </button>
@@ -678,6 +696,38 @@ export function SalesPage({
           Hoàn tất xem trước <Check size={18} />
         </button>
       </dialog>
+      <AddCustomerModal
+        open={addCustomerOpen}
+        onClose={() => setAddCustomerOpen(false)}
+        onSubmit={(data: NewCustomerFormData) => {
+          const newCustomer = {
+            id: crypto.randomUUID(),
+            storeId: catalog?.store?.id ?? "",
+            name: data.name,
+            phone: data.phone,
+            memberTier: data.memberTier,
+            status: data.status,
+          };
+          setCatalog((current) => current
+            ? { ...current, customers: [...current.customers, newCustomer] }
+            : { products: [], categories: [], customers: [newCustomer] });
+          setCustomer(newCustomer.id);
+          setNotice(`Đã thêm khách hàng: ${data.name}${data.phone ? ` · ${data.phone}` : ""}`);
+        }}
+      />
+      <CustomerDetailModal
+        customer={customerDetailOpen && currentCustomer ? {
+          MaKhachHang: currentCustomer.id,
+          MaCuaHang: currentCustomer.storeId,
+          HoTen: currentCustomer.name,
+          SoDienThoai: currentCustomer.phone,
+          HangThanhVien: currentCustomer.memberTier,
+          TrangThai: currentCustomer.status,
+        } : null}
+        customerCode={currentCustomerCode}
+        invoices={customerInvoices}
+        onClose={() => setCustomerDetailOpen(false)}
+      />
     </main>
   );
 }

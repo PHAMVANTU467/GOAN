@@ -5,8 +5,14 @@ import { RegisterPage } from "../features/auth/presentation/pages/RegisterPage";
 import { Workspace, workspaceNavigation } from "./Workspace";
 import { MockCatalogService } from "../features/sales/infrastructure/MockCatalogService";
 import { AccountProfileStore } from "../features/auth/infrastructure/AccountProfileStore";
+import { CustomerService } from "../features/customers/application/CustomerService";
+import { MockCustomerRepository } from "../features/customers/infrastructure/MockCustomerRepository";
+import { InvoiceService } from "../features/invoices/application/InvoiceService";
+import { MockInvoiceRepository } from "../features/invoices/infrastructure/MockInvoiceRepository";
 
 const catalogService = new MockCatalogService();
+const customerService = new CustomerService(new MockCustomerRepository());
+const invoiceService = new InvoiceService(new MockInvoiceRepository());
 
 type AuthRoute = string;
 
@@ -61,6 +67,8 @@ export function App({ authService }: AppProps) {
         path={route}
         navigate={navigate}
         catalogService={catalogService}
+        customerService={customerService}
+        invoiceService={invoiceService}
         account={account}
         onSignOut={() => {
           AccountProfileStore.clear();

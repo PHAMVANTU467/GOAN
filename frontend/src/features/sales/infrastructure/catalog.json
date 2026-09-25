@@ -1,367 +1,539 @@
 {
-  "CuaHang": {
-    "MaCuaHang": "CH001",
-    "TenCuaHang": "Coffee & Tea",
-    "SDT": "0901234567",
-    "diaChi": {
-      "MaDiaChi": "DC001",
-      "DiaChiChiTiet": "123 Lê Lợi, Phường Bến Nghé, Quận 1",
-      "PhuongXa": "Bến Nghé",
-      "TinhThanhPho": "TP. Hồ Chí Minh",
-      "QuocGia": "Việt Nam"
-    },
-    "linhVuc": {
-      "MaLinhVuc": "LV001",
-      "TenLinhVuc": "F&B",
-      "MoTa": "Đồ uống & Cà phê",
-      "TrangThai": "Hoạt động"
-    }
-  },
-  "DanhMucSP": [
-    {
-      "MaLoai": "coffee",
-      "TenLoai": "Cà phê"
-    },
-    {
-      "MaLoai": "tea",
-      "TenLoai": "Trà & matcha"
-    },
-    {
-      "MaLoai": "juice",
-      "TenLoai": "Nước ép"
-    },
-    {
-      "MaLoai": "food",
-      "TenLoai": "Đồ ăn"
-    },
-    {
-      "MaLoai": "bottled",
-      "TenLoai": "Đóng chai"
-    },
-    {
-      "MaLoai": "snack",
-      "TenLoai": "Ăn vặt"
-    }
-  ],
-  "DonViTinh": [
-    {
-      "MaDonVi": "DVT01",
-      "TenDonVi": "Ly"
-    },
-    {
-      "MaDonVi": "DVT02",
-      "TenDonVi": "Chai"
-    },
-    {
-      "MaDonVi": "DVT03",
-      "TenDonVi": "Gói"
-    },
-    {
-      "MaDonVi": "DVT04",
-      "TenDonVi": "Phần"
-    }
-  ],
-  "NhaCC": [
-    {
-      "MaNCC": "NCC001",
-      "TenNCC": "Nông Sản & Nguyên Liệu Pha Chế Sài Gòn",
-      "SDT": "02838123456",
-      "Email": "sales@nguyenlieupha.vn",
-      "DiaChi": "TP. Hồ Chí Minh"
-    }
-  ],
-  "Sanpham": [
-    {
-      "MaSP": "SP0001",
-      "TenSP": "Cà phê kem muối",
-      "GiaVon": 15000,
-      "GiaBan": 35000,
-      "dm": "coffee",
-      "ncc": "NCC001",
-      "dv": "DVT01",
-      "HinhAnh": "/images/products/product-01.jpg"
-    },
-    {
-      "MaSP": "SP0002",
-      "TenSP": "Cà phê sữa đá",
-      "GiaVon": 12000,
-      "GiaBan": 29000,
-      "dm": "coffee",
-      "ncc": "NCC001",
-      "dv": "DVT01",
-      "HinhAnh": "/images/products/product-02.jpg"
-    },
-    {
-      "MaSP": "SP0003",
-      "TenSP": "Cà phê đen đá",
-      "GiaVon": 10000,
-      "GiaBan": 25000,
-      "dm": "coffee",
-      "ncc": "NCC001",
-      "dv": "DVT01",
-      "HinhAnh": "/images/products/product-03.jpg"
-    },
-    {
-      "MaSP": "SP0004",
-      "TenSP": "Matcha latte",
-      "GiaVon": 20000,
-      "GiaBan": 45000,
-      "dm": "tea",
-      "ncc": "NCC001",
-      "dv": "DVT01",
-      "HinhAnh": "/images/products/product-04.jpg"
-    },
-    {
-      "MaSP": "SP0005",
-      "TenSP": "Trà đào hạt chia",
-      "GiaVon": 16000,
-      "GiaBan": 39000,
-      "dm": "tea",
-      "ncc": "NCC001",
-      "dv": "DVT01",
-      "HinhAnh": "/images/products/product-05.jpg"
-    },
-    {
-      "MaSP": "SP0006",
-      "TenSP": "Trà vải hoa hồng",
-      "GiaVon": 18000,
-      "GiaBan": 45000,
-      "dm": "tea",
-      "ncc": "NCC001",
-      "dv": "DVT01",
-      "HinhAnh": "/images/products/product-06.jpg"
-    },
-    {
-      "MaSP": "SP0007",
-      "TenSP": "Nước ép cam",
-      "GiaVon": 17000,
-      "GiaBan": 39000,
-      "dm": "juice",
-      "ncc": "NCC001",
-      "dv": "DVT01",
-      "HinhAnh": "/images/products/product-07.jpg"
-    },
-    {
-      "MaSP": "SP0008",
-      "TenSP": "Chanh dây",
-      "GiaVon": 14000,
-      "GiaBan": 35000,
-      "dm": "juice",
-      "ncc": "NCC001",
-      "dv": "DVT01",
-      "HinhAnh": "/images/products/product-08.jpg"
-    },
-    {
-      "MaSP": "SP0009",
-      "TenSP": "Nước ép dưa hấu",
-      "GiaVon": 14000,
-      "GiaBan": 35000,
-      "dm": "juice",
-      "ncc": "NCC001",
-      "dv": "DVT01",
-      "HinhAnh": "/images/products/product-09.jpg"
-    },
-    {
-      "MaSP": "SP0010",
-      "TenSP": "Nước ép thơm",
-      "GiaVon": 14000,
-      "GiaBan": 35000,
-      "dm": "juice",
-      "ncc": "NCC001",
-      "dv": "DVT01",
-      "HinhAnh": "/images/products/product-10.jpg"
-    },
-    {
-      "MaSP": "SP0011",
-      "TenSP": "Bánh mì ốp la",
-      "GiaVon": 12000,
-      "GiaBan": 25000,
-      "dm": "food",
-      "ncc": "NCC001",
-      "dv": "DVT04",
-      "HinhAnh": "/images/products/product-11.jpg"
-    },
-    {
-      "MaSP": "SP0012",
-      "TenSP": "Croissant bơ tỏi",
-      "GiaVon": 16000,
-      "GiaBan": 32000,
-      "dm": "food",
-      "ncc": "NCC001",
-      "dv": "DVT04",
-      "HinhAnh": "/images/products/product-12.jpg"
-    },
-    {
-      "MaSP": "SP0013",
-      "TenSP": "Sandwich gà nướng",
-      "GiaVon": 20000,
-      "GiaBan": 39000,
-      "dm": "food",
-      "ncc": "NCC001",
-      "dv": "DVT04",
-      "HinhAnh": "/images/products/product-13.jpg"
-    },
-    {
-      "MaSP": "SP0014",
-      "TenSP": "Bánh mousse chanh dây",
-      "GiaVon": 18000,
-      "GiaBan": 35000,
-      "dm": "food",
-      "ncc": "NCC001",
-      "dv": "DVT04",
-      "HinhAnh": "/images/products/product-14.jpg"
-    },
-    {
-      "MaSP": "SP0015",
-      "TenSP": "Trà đào đóng chai",
-      "GiaVon": 18000,
-      "GiaBan": 35000,
-      "dm": "bottled",
-      "ncc": "NCC001",
-      "dv": "DVT02",
-      "HinhAnh": "/images/products/product-15.jpg"
-    },
-    {
-      "MaSP": "SP0016",
-      "TenSP": "Cold brew cam vàng",
-      "GiaVon": 25000,
-      "GiaBan": 49000,
-      "dm": "bottled",
-      "ncc": "NCC001",
-      "dv": "DVT02",
-      "HinhAnh": "/images/products/product-16.jpg"
-    },
-    {
-      "MaSP": "SP0017",
-      "TenSP": "Sữa tươi trân đường đen",
-      "GiaVon": 20000,
-      "GiaBan": 39000,
-      "dm": "bottled",
-      "ncc": "NCC001",
-      "dv": "DVT02",
-      "HinhAnh": "/images/products/product-17.jpg"
-    },
-    {
-      "MaSP": "SP0018",
-      "TenSP": "Trà sữa lài chai 330ml",
-      "GiaVon": 18000,
-      "GiaBan": 35000,
-      "dm": "bottled",
-      "ncc": "NCC001",
-      "dv": "DVT02",
-      "HinhAnh": "/images/products/product-18.jpg"
-    },
-    {
-      "MaSP": "SP0019",
-      "TenSP": "Nước suối Aquafina",
-      "GiaVon": 5000,
-      "GiaBan": 10000,
-      "dm": "bottled",
-      "ncc": "NCC001",
-      "dv": "DVT02",
-      "HinhAnh": "/images/products/product-19.jpg"
-    },
-    {
-      "MaSP": "SP0020",
-      "TenSP": "Snack Lay’s vị tự nhiên",
-      "GiaVon": 12000,
-      "GiaBan": 20000,
-      "dm": "snack",
-      "ncc": "NCC001",
-      "dv": "DVT03",
-      "HinhAnh": "/images/products/product-20.jpg"
-    },
-    {
-      "MaSP": "SP0021",
-      "TenSP": "Kem ốc quế sô cô la",
-      "GiaVon": 13000,
-      "GiaBan": 22000,
-      "dm": "snack",
-      "ncc": "NCC001",
-      "dv": "DVT03",
-      "HinhAnh": "/images/products/product-21.jpg"
-    },
-    {
-      "MaSP": "SP0022",
-      "TenSP": "Chanh muối mật ong",
-      "GiaVon": 15000,
-      "GiaBan": 35000,
-      "dm": "tea",
-      "ncc": "NCC001",
-      "dv": "DVT01",
-      "HinhAnh": "/images/products/product-22.jpg"
-    },
-    {
-      "MaSP": "SP0023",
-      "TenSP": "Trà tắc xí muội",
-      "GiaVon": 15000,
-      "GiaBan": 35000,
-      "dm": "tea",
-      "ncc": "NCC001",
-      "dv": "DVT01",
-      "HinhAnh": "/images/products/product-23.jpg"
-    },
-    {
-      "MaSP": "SP0024",
-      "TenSP": "Nước ép cà rốt",
-      "GiaVon": 17000,
-      "GiaBan": 39000,
-      "dm": "juice",
-      "ncc": "NCC001",
-      "dv": "DVT01",
-      "HinhAnh": "/images/products/product-24.jpg"
-    }
-  ],
-  "BienTheSP": [
-    { "MaBienThe": "BT0001", "MoTa": "Tiêu chuẩn", "TonKho": 60, "MucTonToiThieu": 10, "sp": "SP0001" },
-    { "MaBienThe": "BT0002", "MoTa": "Tiêu chuẩn", "TonKho": 72, "MucTonToiThieu": 10, "sp": "SP0002" },
-    { "MaBienThe": "BT0003", "MoTa": "Tiêu chuẩn", "TonKho": 45, "MucTonToiThieu": 10, "sp": "SP0003" },
-    { "MaBienThe": "BT0004", "MoTa": "Tiêu chuẩn", "TonKho": 35, "MucTonToiThieu": 10, "sp": "SP0004" },
-    { "MaBienThe": "BT0005", "MoTa": "Tiêu chuẩn", "TonKho": 55, "MucTonToiThieu": 10, "sp": "SP0005" },
-    { "MaBienThe": "BT0006", "MoTa": "Tiêu chuẩn", "TonKho": 40, "MucTonToiThieu": 10, "sp": "SP0006" },
-    { "MaBienThe": "BT0007", "MoTa": "Tiêu chuẩn", "TonKho": 65, "MucTonToiThieu": 10, "sp": "SP0007" },
-    { "MaBienThe": "BT0008", "MoTa": "Tiêu chuẩn", "TonKho": 58, "MucTonToiThieu": 10, "sp": "SP0008" },
-    { "MaBienThe": "BT0009", "MoTa": "Tiêu chuẩn", "TonKho": 90, "MucTonToiThieu": 10, "sp": "SP0009" },
-    { "MaBienThe": "BT0010", "MoTa": "Tiêu chuẩn", "TonKho": 65, "MucTonToiThieu": 10, "sp": "SP0010" },
-    { "MaBienThe": "BT0011", "MoTa": "Tiêu chuẩn", "TonKho": 30, "MucTonToiThieu": 10, "sp": "SP0011" },
-    { "MaBienThe": "BT0012", "MoTa": "Tiêu chuẩn", "TonKho": 24, "MucTonToiThieu": 10, "sp": "SP0012" },
-    { "MaBienThe": "BT0013", "MoTa": "Tiêu chuẩn", "TonKho": 28, "MucTonToiThieu": 10, "sp": "SP0013" },
-    { "MaBienThe": "BT0014", "MoTa": "Tiêu chuẩn", "TonKho": 20, "MucTonToiThieu": 10, "sp": "SP0014" },
-    { "MaBienThe": "BT0015", "MoTa": "Tiêu chuẩn", "TonKho": 50, "MucTonToiThieu": 10, "sp": "SP0015" },
-    { "MaBienThe": "BT0016", "MoTa": "Tiêu chuẩn", "TonKho": 40, "MucTonToiThieu": 10, "sp": "SP0016" },
-    { "MaBienThe": "BT0017", "MoTa": "Tiêu chuẩn", "TonKho": 45, "MucTonToiThieu": 10, "sp": "SP0017" },
-    { "MaBienThe": "BT0018", "MoTa": "Tiêu chuẩn", "TonKho": 85, "MucTonToiThieu": 10, "sp": "SP0018" },
-    { "MaBienThe": "BT0019", "MoTa": "Tiêu chuẩn", "TonKho": 120, "MucTonToiThieu": 10, "sp": "SP0019" },
-    { "MaBienThe": "BT0020", "MoTa": "Tiêu chuẩn", "TonKho": 40, "MucTonToiThieu": 10, "sp": "SP0020" },
-    { "MaBienThe": "BT0021", "MoTa": "Tiêu chuẩn", "TonKho": 30, "MucTonToiThieu": 10, "sp": "SP0021" },
-    { "MaBienThe": "BT0022", "MoTa": "Tiêu chuẩn", "TonKho": 50, "MucTonToiThieu": 10, "sp": "SP0022" },
-    { "MaBienThe": "BT0023", "MoTa": "Tiêu chuẩn", "TonKho": 60, "MucTonToiThieu": 10, "sp": "SP0023" },
-    { "MaBienThe": "BT0024", "MoTa": "Tiêu chuẩn", "TonKho": 70, "MucTonToiThieu": 10, "sp": "SP0024" }
-  ],
-  "Khachhang": [
-    {
-      "MaKH": "KH0001",
-      "HoTenKH": "Nguyễn Minh Anh",
-      "SDT": "0901 234 567",
-      "GhiChu": "Khách quen"
-    },
-    {
-      "MaKH": "KH0002",
-      "HoTenKH": "Trần Hoàng Nam",
-      "SDT": "0912 345 678",
-      "GhiChu": "Uống ít đường"
-    }
-  ],
-  "NhanVien": [
-    {
-      "MaNV": "NV001",
-      "HoTenNV": "Phạm Văn Tú",
-      "SDT": "0909112233",
-      "Email": "tu.pham@goan.vn",
-      "DiaChi": "TP. Hồ Chí Minh",
-      "ChucVu": "Thu ngân",
-      "LoaiNhanVien": "Toàn thời gian",
-      "NgayTao": "2026-01-01"
-    }
-  ]
+    "CuaHang":  {
+                    "MaCuaHang":  "66b27f37-4925-41d2-9dd1-c8e913c1bb0d",
+                    "TenCuaHang":  "Coffee \u0026 Tea",
+                    "MaSoThue":  "0310000000",
+                    "TrangThai":  "Hoạt động"
+                },
+    "DonViTinh":  [
+                      {
+                          "MaDonVi":  "fc4eafb0-4f57-4f10-ae65-ff2ad4c5b7ff",
+                          "MaCuaHang":  "66b27f37-4925-41d2-9dd1-c8e913c1bb0d",
+                          "TenDonVi":  "Ly",
+                          "KyHieu":  "Ly"
+                      },
+                      {
+                          "MaDonVi":  "0d873b9d-2e33-4619-9dcf-444c13375e0c",
+                          "MaCuaHang":  "66b27f37-4925-41d2-9dd1-c8e913c1bb0d",
+                          "TenDonVi":  "Chai",
+                          "KyHieu":  "Chai"
+                      },
+                      {
+                          "MaDonVi":  "86c90e20-7dbc-442b-9247-11a49e4fd4bf",
+                          "MaCuaHang":  "66b27f37-4925-41d2-9dd1-c8e913c1bb0d",
+                          "TenDonVi":  "Gói",
+                          "KyHieu":  "Gói"
+                      },
+                      {
+                          "MaDonVi":  "b7aec956-ee19-437c-b093-ef778093af0e",
+                          "MaCuaHang":  "66b27f37-4925-41d2-9dd1-c8e913c1bb0d",
+                          "TenDonVi":  "Phần",
+                          "KyHieu":  "Phần"
+                      }
+                  ],
+    "DanhMuc":  [
+                    {
+                        "MaDanhMuc":  "340aa92a-e997-4c66-b54a-9c817cb176a3",
+                        "MaCuaHang":  "66b27f37-4925-41d2-9dd1-c8e913c1bb0d",
+                        "TenDanhMuc":  "Cà phê",
+                        "MaDanhMucCha":  null
+                    },
+                    {
+                        "MaDanhMuc":  "96364341-f2d3-44b7-8168-1192e7bc526f",
+                        "MaCuaHang":  "66b27f37-4925-41d2-9dd1-c8e913c1bb0d",
+                        "TenDanhMuc":  "Trà \u0026 matcha",
+                        "MaDanhMucCha":  null
+                    },
+                    {
+                        "MaDanhMuc":  "ef02ed2b-acae-4b3a-8cce-4997e7646fc2",
+                        "MaCuaHang":  "66b27f37-4925-41d2-9dd1-c8e913c1bb0d",
+                        "TenDanhMuc":  "Nước ép",
+                        "MaDanhMucCha":  null
+                    },
+                    {
+                        "MaDanhMuc":  "071926fd-b2ba-4666-8462-b72e365533c3",
+                        "MaCuaHang":  "66b27f37-4925-41d2-9dd1-c8e913c1bb0d",
+                        "TenDanhMuc":  "Đồ ăn",
+                        "MaDanhMucCha":  null
+                    },
+                    {
+                        "MaDanhMuc":  "8c9ed7ab-5ca6-46f2-8d6c-b618302410aa",
+                        "MaCuaHang":  "66b27f37-4925-41d2-9dd1-c8e913c1bb0d",
+                        "TenDanhMuc":  "Đóng chai",
+                        "MaDanhMucCha":  null
+                    },
+                    {
+                        "MaDanhMuc":  "a1d2ece0-002f-41ec-80d6-e248ed3aee1c",
+                        "MaCuaHang":  "66b27f37-4925-41d2-9dd1-c8e913c1bb0d",
+                        "TenDanhMuc":  "Ăn vặt",
+                        "MaDanhMucCha":  null
+                    }
+                ],
+    "NguoiDung":  [
+
+                  ],
+    "NhaCungCap":  [
+                       {
+                           "MaNCC":  "521f03c9-667f-4426-9884-8455d214da67",
+                           "MaCuaHang":  "66b27f37-4925-41d2-9dd1-c8e913c1bb0d",
+                           "TenNCC":  "Nông Sản \u0026 Nguyên Liệu Pha Chế Sài Gòn",
+                           "DiaChi":  "TP. Hồ Chí Minh",
+                           "TrangThai":  "Hoạt động",
+                           "SoDienThoai":  "02838123456"
+                       }
+                   ],
+    "SanPham":  [
+                    {
+                        "MaDanhMuc":  "340aa92a-e997-4c66-b54a-9c817cb176a3",
+                        "MaDonVi":  "fc4eafb0-4f57-4f10-ae65-ff2ad4c5b7ff",
+                        "MaVach":  "8930000000001",
+                        "GiaVon":  15000,
+                        "GiaBan":  35000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "57fac1dc-8a27-4f4a-97d8-5f104082ce9c",
+                        "TenSanPham":  "Cà phê kem muối"
+                    },
+                    {
+                        "MaDanhMuc":  "340aa92a-e997-4c66-b54a-9c817cb176a3",
+                        "MaDonVi":  "fc4eafb0-4f57-4f10-ae65-ff2ad4c5b7ff",
+                        "MaVach":  "8930000000002",
+                        "GiaVon":  12000,
+                        "GiaBan":  29000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "1992a499-2adb-44c5-917d-ab606f25a31d",
+                        "TenSanPham":  "Cà phê sữa đá"
+                    },
+                    {
+                        "MaDanhMuc":  "340aa92a-e997-4c66-b54a-9c817cb176a3",
+                        "MaDonVi":  "fc4eafb0-4f57-4f10-ae65-ff2ad4c5b7ff",
+                        "MaVach":  "8930000000003",
+                        "GiaVon":  10000,
+                        "GiaBan":  25000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "9423f723-3cca-4843-9a64-889dbe339a40",
+                        "TenSanPham":  "Cà phê đen đá"
+                    },
+                    {
+                        "MaDanhMuc":  "96364341-f2d3-44b7-8168-1192e7bc526f",
+                        "MaDonVi":  "fc4eafb0-4f57-4f10-ae65-ff2ad4c5b7ff",
+                        "MaVach":  "8930000000004",
+                        "GiaVon":  20000,
+                        "GiaBan":  45000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "012cfda0-39eb-4898-b9f4-e2faba73f00f",
+                        "TenSanPham":  "Matcha latte"
+                    },
+                    {
+                        "MaDanhMuc":  "96364341-f2d3-44b7-8168-1192e7bc526f",
+                        "MaDonVi":  "fc4eafb0-4f57-4f10-ae65-ff2ad4c5b7ff",
+                        "MaVach":  "8930000000005",
+                        "GiaVon":  16000,
+                        "GiaBan":  39000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "59bacb4f-473a-41e1-a442-af0e0c879899",
+                        "TenSanPham":  "Trà đào hạt chia"
+                    },
+                    {
+                        "MaDanhMuc":  "96364341-f2d3-44b7-8168-1192e7bc526f",
+                        "MaDonVi":  "fc4eafb0-4f57-4f10-ae65-ff2ad4c5b7ff",
+                        "MaVach":  "8930000000006",
+                        "GiaVon":  18000,
+                        "GiaBan":  45000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "9a9106a4-3300-4109-9a08-e4e05f30931b",
+                        "TenSanPham":  "Trà vải hoa hồng"
+                    },
+                    {
+                        "MaDanhMuc":  "ef02ed2b-acae-4b3a-8cce-4997e7646fc2",
+                        "MaDonVi":  "fc4eafb0-4f57-4f10-ae65-ff2ad4c5b7ff",
+                        "MaVach":  "8930000000007",
+                        "GiaVon":  17000,
+                        "GiaBan":  39000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "613e60dd-f98c-4c7e-a38a-14636d0440b4",
+                        "TenSanPham":  "Nước ép cam"
+                    },
+                    {
+                        "MaDanhMuc":  "ef02ed2b-acae-4b3a-8cce-4997e7646fc2",
+                        "MaDonVi":  "fc4eafb0-4f57-4f10-ae65-ff2ad4c5b7ff",
+                        "MaVach":  "8930000000008",
+                        "GiaVon":  14000,
+                        "GiaBan":  35000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "b6483920-8b0e-43a2-baad-b4cb36bf352a",
+                        "TenSanPham":  "Chanh dây"
+                    },
+                    {
+                        "MaDanhMuc":  "ef02ed2b-acae-4b3a-8cce-4997e7646fc2",
+                        "MaDonVi":  "fc4eafb0-4f57-4f10-ae65-ff2ad4c5b7ff",
+                        "MaVach":  "8930000000009",
+                        "GiaVon":  14000,
+                        "GiaBan":  35000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "a66c09d6-022b-4af9-aa0b-90a83ab73217",
+                        "TenSanPham":  "Nước ép dưa hấu"
+                    },
+                    {
+                        "MaDanhMuc":  "ef02ed2b-acae-4b3a-8cce-4997e7646fc2",
+                        "MaDonVi":  "fc4eafb0-4f57-4f10-ae65-ff2ad4c5b7ff",
+                        "MaVach":  "8930000000010",
+                        "GiaVon":  14000,
+                        "GiaBan":  35000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "ea6ce5e4-65f1-4e26-a0d2-3b516eee9bb7",
+                        "TenSanPham":  "Nước ép thơm"
+                    },
+                    {
+                        "MaDanhMuc":  "071926fd-b2ba-4666-8462-b72e365533c3",
+                        "MaDonVi":  "b7aec956-ee19-437c-b093-ef778093af0e",
+                        "MaVach":  "8930000000011",
+                        "GiaVon":  12000,
+                        "GiaBan":  25000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "4bb88867-59cb-4583-bf62-91ed377d7b8d",
+                        "TenSanPham":  "Bánh mì ốp la"
+                    },
+                    {
+                        "MaDanhMuc":  "071926fd-b2ba-4666-8462-b72e365533c3",
+                        "MaDonVi":  "b7aec956-ee19-437c-b093-ef778093af0e",
+                        "MaVach":  "8930000000012",
+                        "GiaVon":  16000,
+                        "GiaBan":  32000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "4f999a9e-71c0-4910-a5be-1eded11d80c6",
+                        "TenSanPham":  "Croissant bơ tỏi"
+                    },
+                    {
+                        "MaDanhMuc":  "071926fd-b2ba-4666-8462-b72e365533c3",
+                        "MaDonVi":  "b7aec956-ee19-437c-b093-ef778093af0e",
+                        "MaVach":  "8930000000013",
+                        "GiaVon":  20000,
+                        "GiaBan":  39000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "1884062f-5f47-4ffe-93be-527da502e068",
+                        "TenSanPham":  "Sandwich gà nướng"
+                    },
+                    {
+                        "MaDanhMuc":  "071926fd-b2ba-4666-8462-b72e365533c3",
+                        "MaDonVi":  "b7aec956-ee19-437c-b093-ef778093af0e",
+                        "MaVach":  "8930000000014",
+                        "GiaVon":  18000,
+                        "GiaBan":  35000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "4e0282cc-8f3c-49d0-a434-8c0e8ec8bf51",
+                        "TenSanPham":  "Bánh mousse chanh dây"
+                    },
+                    {
+                        "MaDanhMuc":  "8c9ed7ab-5ca6-46f2-8d6c-b618302410aa",
+                        "MaDonVi":  "0d873b9d-2e33-4619-9dcf-444c13375e0c",
+                        "MaVach":  "8930000000015",
+                        "GiaVon":  18000,
+                        "GiaBan":  35000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "431ef6fb-fe5e-4fce-a9b0-466d929ba978",
+                        "TenSanPham":  "Trà đào đóng chai"
+                    },
+                    {
+                        "MaDanhMuc":  "8c9ed7ab-5ca6-46f2-8d6c-b618302410aa",
+                        "MaDonVi":  "0d873b9d-2e33-4619-9dcf-444c13375e0c",
+                        "MaVach":  "8930000000016",
+                        "GiaVon":  25000,
+                        "GiaBan":  49000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "e77cf837-3dd4-4afd-a7f3-152004fc86ac",
+                        "TenSanPham":  "Cold brew cam vàng"
+                    },
+                    {
+                        "MaDanhMuc":  "8c9ed7ab-5ca6-46f2-8d6c-b618302410aa",
+                        "MaDonVi":  "0d873b9d-2e33-4619-9dcf-444c13375e0c",
+                        "MaVach":  "8930000000017",
+                        "GiaVon":  20000,
+                        "GiaBan":  39000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "499c1cc1-b024-4e78-99f0-af395a2a903e",
+                        "TenSanPham":  "Sữa tươi trân đường đen"
+                    },
+                    {
+                        "MaDanhMuc":  "8c9ed7ab-5ca6-46f2-8d6c-b618302410aa",
+                        "MaDonVi":  "0d873b9d-2e33-4619-9dcf-444c13375e0c",
+                        "MaVach":  "8930000000018",
+                        "GiaVon":  18000,
+                        "GiaBan":  35000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "69bdfec2-e039-4e28-a30a-727481be832d",
+                        "TenSanPham":  "Trà sữa lài chai 330ml"
+                    },
+                    {
+                        "MaDanhMuc":  "8c9ed7ab-5ca6-46f2-8d6c-b618302410aa",
+                        "MaDonVi":  "0d873b9d-2e33-4619-9dcf-444c13375e0c",
+                        "MaVach":  "8930000000019",
+                        "GiaVon":  5000,
+                        "GiaBan":  10000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "6c6a93f1-6fc9-4753-a041-9134f8098228",
+                        "TenSanPham":  "Nước suối Aquafina"
+                    },
+                    {
+                        "MaDanhMuc":  "a1d2ece0-002f-41ec-80d6-e248ed3aee1c",
+                        "MaDonVi":  "86c90e20-7dbc-442b-9247-11a49e4fd4bf",
+                        "MaVach":  "8930000000020",
+                        "GiaVon":  12000,
+                        "GiaBan":  20000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "9b70b097-2b18-4dee-ad9c-6cd48547dfe9",
+                        "TenSanPham":  "Snack Lay’s vị tự nhiên"
+                    },
+                    {
+                        "MaDanhMuc":  "a1d2ece0-002f-41ec-80d6-e248ed3aee1c",
+                        "MaDonVi":  "86c90e20-7dbc-442b-9247-11a49e4fd4bf",
+                        "MaVach":  "8930000000021",
+                        "GiaVon":  13000,
+                        "GiaBan":  22000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "02b3b595-2722-4ef4-87c7-d61e21d6c4b4",
+                        "TenSanPham":  "Kem ốc quế sô cô la"
+                    },
+                    {
+                        "MaDanhMuc":  "96364341-f2d3-44b7-8168-1192e7bc526f",
+                        "MaDonVi":  "fc4eafb0-4f57-4f10-ae65-ff2ad4c5b7ff",
+                        "MaVach":  "8930000000022",
+                        "GiaVon":  15000,
+                        "GiaBan":  35000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "0bd3a249-fd88-44df-bafc-11ba1ca1f676",
+                        "TenSanPham":  "Chanh muối mật ong"
+                    },
+                    {
+                        "MaDanhMuc":  "96364341-f2d3-44b7-8168-1192e7bc526f",
+                        "MaDonVi":  "fc4eafb0-4f57-4f10-ae65-ff2ad4c5b7ff",
+                        "MaVach":  "8930000000023",
+                        "GiaVon":  15000,
+                        "GiaBan":  35000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "c6cb1295-b4ea-4764-8fad-39cce5740e94",
+                        "TenSanPham":  "Trà tắc xí muội"
+                    },
+                    {
+                        "MaDanhMuc":  "ef02ed2b-acae-4b3a-8cce-4997e7646fc2",
+                        "MaDonVi":  "fc4eafb0-4f57-4f10-ae65-ff2ad4c5b7ff",
+                        "MaVach":  "8930000000024",
+                        "GiaVon":  17000,
+                        "GiaBan":  39000,
+                        "TrangThai":  "Đang bán",
+                        "MaSanPham":  "e681eafc-e0b8-4641-9230-d243abdc8c9f",
+                        "TenSanPham":  "Nước ép cà rốt"
+                    }
+                ],
+    "BienTheSanPham":  [
+                           {
+                               "MaBienThe":  "4d42e196-8e8b-4853-bb2f-bb60f4fe1b8e",
+                               "SKU":  "SP0001",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000001",
+                               "GiaBan":  35000,
+                               "MaSanPham":  "57fac1dc-8a27-4f4a-97d8-5f104082ce9c"
+                           },
+                           {
+                               "MaBienThe":  "3c59f344-2785-4f38-adcb-a28bbdf2c7e7",
+                               "SKU":  "SP0002",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000002",
+                               "GiaBan":  29000,
+                               "MaSanPham":  "1992a499-2adb-44c5-917d-ab606f25a31d"
+                           },
+                           {
+                               "MaBienThe":  "08fea86b-ea37-42cd-af02-b0a5d77fbfe8",
+                               "SKU":  "SP0003",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000003",
+                               "GiaBan":  25000,
+                               "MaSanPham":  "9423f723-3cca-4843-9a64-889dbe339a40"
+                           },
+                           {
+                               "MaBienThe":  "c7f69e8d-5159-40c9-8dfd-1271c7e2b198",
+                               "SKU":  "SP0004",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000004",
+                               "GiaBan":  45000,
+                               "MaSanPham":  "012cfda0-39eb-4898-b9f4-e2faba73f00f"
+                           },
+                           {
+                               "MaBienThe":  "9d535b1f-1be7-41c8-a148-491036710462",
+                               "SKU":  "SP0005",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000005",
+                               "GiaBan":  39000,
+                               "MaSanPham":  "59bacb4f-473a-41e1-a442-af0e0c879899"
+                           },
+                           {
+                               "MaBienThe":  "19a26f74-c1cc-4ac4-93d6-dadcd3295334",
+                               "SKU":  "SP0006",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000006",
+                               "GiaBan":  45000,
+                               "MaSanPham":  "9a9106a4-3300-4109-9a08-e4e05f30931b"
+                           },
+                           {
+                               "MaBienThe":  "dd5ba081-4c01-4a0f-ac35-9563b34675ac",
+                               "SKU":  "SP0007",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000007",
+                               "GiaBan":  39000,
+                               "MaSanPham":  "613e60dd-f98c-4c7e-a38a-14636d0440b4"
+                           },
+                           {
+                               "MaBienThe":  "da8abfd1-08ee-44cb-92f1-51442edee618",
+                               "SKU":  "SP0008",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000008",
+                               "GiaBan":  35000,
+                               "MaSanPham":  "b6483920-8b0e-43a2-baad-b4cb36bf352a"
+                           },
+                           {
+                               "MaBienThe":  "222a99e4-00fa-444d-a949-f60a0b81730e",
+                               "SKU":  "SP0009",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000009",
+                               "GiaBan":  35000,
+                               "MaSanPham":  "a66c09d6-022b-4af9-aa0b-90a83ab73217"
+                           },
+                           {
+                               "MaBienThe":  "43a0be43-aeed-41cd-a58a-c082c5507884",
+                               "SKU":  "SP0010",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000010",
+                               "GiaBan":  35000,
+                               "MaSanPham":  "ea6ce5e4-65f1-4e26-a0d2-3b516eee9bb7"
+                           },
+                           {
+                               "MaBienThe":  "11c514c8-4360-43f2-8ce4-bc068e53d776",
+                               "SKU":  "SP0011",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000011",
+                               "GiaBan":  25000,
+                               "MaSanPham":  "4bb88867-59cb-4583-bf62-91ed377d7b8d"
+                           },
+                           {
+                               "MaBienThe":  "554522f3-6f7b-48f0-b6af-e97e2d3c60a1",
+                               "SKU":  "SP0012",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000012",
+                               "GiaBan":  32000,
+                               "MaSanPham":  "4f999a9e-71c0-4910-a5be-1eded11d80c6"
+                           },
+                           {
+                               "MaBienThe":  "48c34331-83cb-4877-ad80-060c8161554a",
+                               "SKU":  "SP0013",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000013",
+                               "GiaBan":  39000,
+                               "MaSanPham":  "1884062f-5f47-4ffe-93be-527da502e068"
+                           },
+                           {
+                               "MaBienThe":  "02d772b7-48ac-4ed3-befb-a55129d732c0",
+                               "SKU":  "SP0014",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000014",
+                               "GiaBan":  35000,
+                               "MaSanPham":  "4e0282cc-8f3c-49d0-a434-8c0e8ec8bf51"
+                           },
+                           {
+                               "MaBienThe":  "7477a8b8-ceb9-4f9a-8d59-a316bd3ec49a",
+                               "SKU":  "SP0015",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000015",
+                               "GiaBan":  35000,
+                               "MaSanPham":  "431ef6fb-fe5e-4fce-a9b0-466d929ba978"
+                           },
+                           {
+                               "MaBienThe":  "37886b2d-d41d-4f83-b2d6-471a689b75db",
+                               "SKU":  "SP0016",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000016",
+                               "GiaBan":  49000,
+                               "MaSanPham":  "e77cf837-3dd4-4afd-a7f3-152004fc86ac"
+                           },
+                           {
+                               "MaBienThe":  "5563d654-0f0d-4a81-b525-9fb2495cdcef",
+                               "SKU":  "SP0017",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000017",
+                               "GiaBan":  39000,
+                               "MaSanPham":  "499c1cc1-b024-4e78-99f0-af395a2a903e"
+                           },
+                           {
+                               "MaBienThe":  "ad8674c3-6c37-4539-a71b-3613baf3b4f5",
+                               "SKU":  "SP0018",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000018",
+                               "GiaBan":  35000,
+                               "MaSanPham":  "69bdfec2-e039-4e28-a30a-727481be832d"
+                           },
+                           {
+                               "MaBienThe":  "1d32f9ba-8cb4-42f5-b0b4-6a7d1ecc6ff7",
+                               "SKU":  "SP0019",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000019",
+                               "GiaBan":  10000,
+                               "MaSanPham":  "6c6a93f1-6fc9-4753-a041-9134f8098228"
+                           },
+                           {
+                               "MaBienThe":  "0e6fd6f1-2a06-4cb2-a88e-641ee28552fc",
+                               "SKU":  "SP0020",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000020",
+                               "GiaBan":  20000,
+                               "MaSanPham":  "9b70b097-2b18-4dee-ad9c-6cd48547dfe9"
+                           },
+                           {
+                               "MaBienThe":  "8fb08b67-e49d-4558-b36d-d9bdabe3d6ac",
+                               "SKU":  "SP0021",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000021",
+                               "GiaBan":  22000,
+                               "MaSanPham":  "02b3b595-2722-4ef4-87c7-d61e21d6c4b4"
+                           },
+                           {
+                               "MaBienThe":  "59dc0237-d3a2-46ec-b2a8-b0eef1b48feb",
+                               "SKU":  "SP0022",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000022",
+                               "GiaBan":  35000,
+                               "MaSanPham":  "0bd3a249-fd88-44df-bafc-11ba1ca1f676"
+                           },
+                           {
+                               "MaBienThe":  "fdef2314-2e54-4732-8e84-84f9411b1f5b",
+                               "SKU":  "SP0023",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000023",
+                               "GiaBan":  35000,
+                               "MaSanPham":  "c6cb1295-b4ea-4764-8fad-39cce5740e94"
+                           },
+                           {
+                               "MaBienThe":  "a5274753-e9cb-4069-8cbd-6f11c24d8ca4",
+                               "SKU":  "SP0024",
+                               "ThuocTinh":  "Tiêu chuẩn",
+                               "MaVach":  "8930000000024",
+                               "GiaBan":  39000,
+                               "MaSanPham":  "e681eafc-e0b8-4641-9230-d243abdc8c9f"
+                           }
+                       ],
+    "KhachHang":  [
+                      {
+                          "MaCuaHang":  "66b27f37-4925-41d2-9dd1-c8e913c1bb0d",
+                          "HangThanhVien":  "Thường",
+                          "TrangThai":  "Hoạt động",
+                          "MaKhachHang":  "4f85efa5-dad4-49ad-b2ce-9631a80e39ba",
+                          "HoTen":  "Nguyễn Minh Anh",
+                          "SoDienThoai":  "0901 234 567"
+                      },
+                      {
+                          "MaCuaHang":  "66b27f37-4925-41d2-9dd1-c8e913c1bb0d",
+                          "HangThanhVien":  "Thường",
+                          "TrangThai":  "Hoạt động",
+                          "MaKhachHang":  "2fa80da8-ecf5-48a4-9bfe-86c11e15a7d7",
+                          "HoTen":  "Trần Hoàng Nam",
+                          "SoDienThoai":  "0912 345 678"
+                      }
+                  ]
 }
